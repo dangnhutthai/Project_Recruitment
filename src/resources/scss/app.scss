@@ -1,0 +1,344 @@
+@import 'variables';
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: large;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #b1b1db;
+    background: linear-gradient(to right, #e2e2e2, #b1b1db);
+}
+
+.navbar {
+    background-color: $primary-color;
+    height: 70px;
+}
+
+.btn-upload {
+    background-color: $primary-color;
+    border-color: white;
+}
+
+.btn-upload:hover {
+    border-color: black !important;
+}
+
+.btn-upload a:hover {
+    color: black !important;
+}
+
+.nav-link:hover {
+    color: black !important;
+}
+
+.bg-com {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px 50px 50px 20px;
+}
+
+.head {
+    background-color: #747497;  
+    // background-image: url("/img/head-background.png");
+    background-repeat: none;
+    background-size:cover;
+    height: 180px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px !important;
+
+}
+
+.head-text {
+    color: white;
+    font-size: 32px;
+    text-align: center;
+}
+
+.head-text-2 {
+    color: white;
+    font-size: 19px;
+    text-align: center;
+}
+
+.location-input {
+    width: 200px;
+    border-radius: 40px !important;
+}
+
+.career-input {
+    width: 200px;
+}
+
+.textarea-lagre {
+    height: 120px;
+}
+
+.btn-submit {
+    background-color: $primary-color;
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: $btnhover-color;
+    color: black;
+    border-color: white;
+}
+
+.head-body {
+    background-color: $primary-color;
+}
+
+.card {
+    width: 410px !important;
+    margin-left: 5px;
+    margin-top: 10px;
+    height: 400px !important;
+}
+
+.icon-hover:hover {
+    color: #747497 !important;
+}
+
+.btn-drop {
+    background-color: none;
+    margin-top: -40px;
+    margin-left: -30px;
+    border-radius: 10px;
+}
+
+.icon-signin-key {
+    margin-right: 26px;
+
+}
+
+.btn-drop i {
+    font-size: 13px;
+}
+
+.info-job {
+    background-color: #fff;
+    border: $primary-color;
+    border-radius: 10px;
+}
+
+.info-job-2 {
+    background-color: #f4f4ff;
+    border: $primary-color;
+    border-radius: 10px;
+}
+
+.container-auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container-form-general {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15p rgba(0,0,0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+.container-auth button {
+    background-color: $primary-color;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.container-auth button:hover {
+    background-color: $btnhover-color;
+
+}
+
+.container-auth button.hidden {
+    background-color: transparent;
+    border-color: #fff;
+}
+
+.container-auth form {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+    height: 100%;
+    flex-direction: column;
+}
+
+.container-auth input {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container-auth.active .sign-in {
+    transform: translateX(100%);
+}
+
+.sign-up {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container-auth.active .sign-up {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+@keyframes move {
+    0%, 49% {
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.toggle-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.container-auth.active .toggle-container {
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0px;
+}
+
+.toggle {
+    background-color: #512ad8;
+    height: 100%;
+    background: linear-gradient(to right, #5c6bc0, #512da8);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.container-auth.active .toggle {
+    transform: translateX(50%);
+}
+
+.toggle-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left {
+    transform: translateX(-200%);
+}
+
+.toggle-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container-auth.active .toggle-left {
+    transform: translateX(0);
+}
+
+.container-auth.active .toggle-right {
+    transform: translateX(200%);
+
+}
+.form-container a {
+    color: #7b7777;
+}
+
+.form-container .return-home {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.form-container .return-home-2 {
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
+.chose-type-user {
+    display: flex;
+}
+
+.form-container .text-span {
+    font-size: 14px;
+
+}
+
+.icon-check {
+    font-size: 13px;
+}
+
+.form-container .error {
+    font-size: 13px;
+    color: red;
+}
+
+.btn-account {
+    background-color: #747497;
+}
+
+.btn-account:hover {
+    background-color: #313139;
+}

@@ -1,0 +1,183 @@
+<div class="container-auth" id="container-auth">
+    <div class="container-form-general">
+        <div class="form-container sign-up">
+            <div class="d-flex float-end return-home-2">
+                <a href="/">
+
+                    <i class="fa-solid fa-house" style="color: #543dae;"></i>
+                </a>
+
+            </div>
+            <form name="signup-form">
+                <h1>
+                    Đăng ký
+                </h1>
+
+                <input type="text" name="email" placeholder="Email">
+                <div class="email error"></div>
+
+                <input type="password" name="password" placeholder="Mật khẩu">
+                <div class="password error"></div>
+                
+                <p class="my-1 text-span">
+                    Bạn là?
+                </p>
+                <div class="chose-type-user">
+                    <div class="form-check text-center p-0">
+                        <input type="radio" class="btn-check" name="typeuser" id="success-outlined" autocomplete="off"
+                            value="seeker" checked>
+                        <label class="btn btn-outline-secondary text-span" for="success-outlined"><i
+                                class="fa-solid fa-user icon-check"></i> Người tìm việc</label>
+
+                    </div>
+
+                    <div class="form-check text-center">
+                        <input type="radio" class="btn-check" name="typeuser" id="danger-outlined" autocomplete="off"
+                            value="company">
+                        <label class="btn btn-outline-secondary text-span" for="danger-outlined"><i
+                                class="fa-solid fa-building icon-check me-1"></i>Nhà tuyển dụng</label>
+                    </div>
+                </div>
+                <button>
+                    Đăng ký
+                </button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <div class="d-flex position-absolute return-home">
+                <a href="/">
+                    <i class="fa-solid fa-house" style="color: #543dae;"></i>
+                </a>
+
+            </div>
+
+            <form name="signin-form">
+                <h1>
+                    Đăng nhập
+                </h1>
+                <input type="email" name="emailin" placeholder="Email">
+                <div class="email_in error"></div>
+
+                <input type="password" name="passwordin" placeholder="Mật khẩu">
+                <div class="password_in error"></div>
+                <button>
+                    Đăng nhập
+                </button>
+                <a href="" class="text-decoration-none mt-2">Quên mật khẩu?</a>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Xin chào</h1>
+                    <p>Vui lòng nhập đầy đủ thông tin để đến với website
+
+                    </p>
+                    <button class="hidden" id="login">
+                        Đăng nhập
+                    </button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1 class="fs-2">Chào mừng trở lại</h1>
+                    <p>Nếu chưa có tài khoản thì hãy đăng ký ngay ở đây nhé!
+                    </p>
+                    <button class="hidden" id="register">
+                        Đăng ký
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const registerBtn = document.getElementById('register');
+    const container = document.getElementById('container-auth');
+    const loginBtn = document.getElementById('login');
+
+    registerBtn.addEventListener('click', () => {
+        container.classList.add('active');
+    });
+
+    loginBtn.addEventListener('click', () => {
+        container.classList.remove('active');
+    });
+
+    const signupForm = document.forms['signup-form'];
+    const emailError = document.querySelector('.email.error');
+    const passwordError = document.querySelector('.password.error');
+
+    signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        //reset errors
+        emailError.textContent = '';
+        passwordError.textContent = '';
+
+        const email = signupForm.email.value;
+        const password = signupForm.password.value;
+        const typeuser = signupForm.typeuser.value;
+
+        try {
+            const res = await fetch('account/signup', {
+                method: 'POST',
+                body: JSON.stringify({ email: email, password: password, type_user: typeuser }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            const data = await res.json();
+            console.log(data);
+
+            if (data.errors) {
+                emailError.textContent = data.errors.email;
+                passwordError.textContent = data.errors.password;
+            }
+
+            if (data.user) {
+                location.assign('/account');
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    })
+
+    const signinForm = document.forms['signin-form'];
+    const emailErrorin = document.querySelector('.email_in.error');
+    const passwordErrorin = document.querySelector('.password_in.error');
+
+    signinForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        //reset errors
+        emailErrorin.textContent = '';
+        passwordErrorin.textContent = '';
+
+        const email = signinForm.emailin.value;
+        const password = signinForm.passwordin.value;
+
+        try {
+            const res = await fetch('account/signin', {
+                method: 'POST',
+                body: JSON.stringify({
+                    email,
+                    password
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await res.json();
+            console.log(data);
+            if (data.errors) {
+                emailErrorin.textContent = data.errors.email;
+                passwordErrorin.textContent = data.errors.password;
+            }
+            if (data.user) {
+                location.assign('/');
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    })
+
+</script>

@@ -1,0 +1,80 @@
+<div class="row gx-5">
+    <nav class="navbar navbar-expand-lg m-0 p-0">
+        <div class="col-10 offset-1">
+            <div class="container-nav pb-4">
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item mx-2">
+                            <a class="nav-link active text-white" aria-current="page" href="/">Trang chủ</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-white" href="#">Tin tức</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link text-white" href="#">Liên hệ</a>
+                        </li>
+                    </ul>
+                    <div>
+                        {{#if user}}
+                        {{#if (isSeeker user.type_user)}}
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="true">
+
+                                {{ user.email }}
+
+
+                                {{/if}}
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Việc làm của tôi</a></li>
+                                <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li> <a class="dropdown-item text-decoration-none text-dark" href="/account/logout">Đăng
+                                        xuất</a>
+                                </li>
+                            </ul>
+                        </div>
+                        {{#if (isCompany user.type_user)}}
+                        <div class="dropdown">
+                            <span class="text-white me-1">Xin chào</span>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="true">
+                                {{ user.email }}
+                                {{/if}}
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="../company/stored">Bài đăng của tôi</a></li>
+                                <li><a class="dropdown-item" href="../company/account/{{ user._id }}">Thông tin tài khoản</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li> <a class="dropdown-item text-decoration-none text-dark" href="/account/logout">Đăng
+                                        xuất</a>
+                                </li>
+                            </ul>
+                        </div>
+                        {{else}}
+                        <button class="btn btn-account">
+                            <a href="/account" class="text-decoration-none text-white">
+                                Tài khoản
+                            </a>
+                        </button>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>

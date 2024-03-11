@@ -1,0 +1,66 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="head">
+            <div class="head-text mt-3">
+                Tìm kiếm việc làm cho chính bạn
+            </div>
+            <div class="head-text-2">
+                Việc làm mới nhất, đầy đủ ngành nghề, lĩnh vực
+            </div>
+            <div class="row justify-content-center my-3">
+
+                <div class="input-group mb-3 w-25">
+
+                    <input type="text" class="form-control" placeholder="Tên công việc" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3 career-input">
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Nghành nghề</option>
+                        {{#each careers}}
+                        <option value="{{this.name}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="input-group mb-3 location-input">
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Khu vực</option>
+                        {{#each locations}}
+                        <option value="{{this.name}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="div mt-4">
+        <div class="row justify-content-evenly">
+            <div class="col-10">
+                <div class="row">
+                    <span class="head-body px-3 py-2 rounded ms-1 text-white text-center fs-3">Việc làm mới nhất</span>
+                    {{#each jobs }}
+                    <div class="col-4 p-0 m-0">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{this.title}}</h5>
+                                <h6 class="card-subtitle text-muted">{{this.company}}</h6>
+                                <p class="card-text">{{{this.description}}}</p>
+                            </div>
+                            <div class="d-flex flex-bottom align-items-center">
+                                <a href="/job/{{this.slug}}" class="btn btn-submit ms-1 mb-1">Chi tiết</a>
+                                
+                                <i class="fa-solid fa-location-dot ms-3 mx-1" style="color: #595993;"></i>{{this.location}}
+                                <i class="fa-solid fa-pen-nib ms-3 mx-1" style="color: #595993;"></i>{{this.career}}
+                                <i class="fa-solid fa-user ms-3 mx-1" style="color: #595993;"></i>{{this.member}} vị trí
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

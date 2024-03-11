@@ -1,0 +1,138 @@
+<div class="container ">
+    <div class="row mt-4 justify-content-center info-job">
+        <div class="col-7 ">
+            <h1 class="mt-2 mb-4">{{job.title}}</h1>
+
+            <h4 class="position-relative">Mô tả công việc</h4>
+
+
+            <span class="position-absolute btn-drop">
+                <button class="btn p-0 px-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                    aria-expanded="true" aria-controls="collapseExample">
+                    <i class="fa-solid fa-arrow-up" onclick="changeIcon(this)" style="color: #595993;"></i>
+                </button>
+            </span>
+
+
+            <div class="text-description">
+                <div class="collapse show" id="collapseExample">
+                    <div class="special-character">
+
+
+                        {{{job.description}}}
+                    </div>
+
+                </div>
+            </div>
+            <h4 class="mt-4 position-relative">Yêu cầu công việc và hồ sơ chuẩn bị</h4>
+            <span class="position-absolute btn-drop">
+                <button class="btn p-0 px-1" type="button" data-bs-toggle="collapse" data-bs-target="#requirement-text"
+                    aria-expanded="true" aria-controls="requirement-text">
+                    <i class="fa-solid fa-arrow-up" onclick="changeIcon(this)" style="color: #595993;"></i>
+                </button>
+            </span>
+            <div class="text-requirement">
+                <div class="collapse show" id="requirement-text">
+                    {{{job.requirement}}}
+                </div>
+            </div>
+            <h4 class="mt-4 position-relative">Quyền lợi</h4>
+            <span class="position-absolute btn-drop">
+                <button class="btn p-0 px-1" type="button" data-bs-toggle="collapse" data-bs-target="#benefit-text"
+                    aria-expanded="true" aria-controls="benefit-text">
+                    <i class="fa-solid fa-arrow-up" onclick="changeIcon(this)" style="color: #595993;"></i>
+                </button>
+            </span>
+            <div class="text-benefit">
+                <div class="collapse show" id="benefit-text">
+                    {{{job.benefit}}}
+                </div>
+            </div>
+            <h4 class="mt-4 position-relative">Thông tin liên hệ</h4>
+            <span class="position-absolute btn-drop">
+                <button class="btn p-0 px-1" type="button" data-bs-toggle="collapse" data-bs-target="#info"
+                    aria-expanded="true" aria-controls="info">
+                    <i class="fa-solid fa-arrow-up" onclick="changeIcon(this)" style="color: #595993;"></i>
+                </button>
+
+            </span>
+            <div class="collapse show" id="info">
+
+                <div class="table">
+                    <table class="table align-middle">
+                        <tr>
+                            <td class="border-end">
+
+                                Địa chỉ
+                            </td>
+                            <td>
+                                {{ job.address }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border-end">
+
+                                Email
+                            </td>
+                            <td>
+                                {{ user.email }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border-end">
+                                Số điện thoại
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-3">
+
+            <button class="btn btn-submit w-100 my-1 mt-4">
+                Ứng tuyển
+            </button>
+
+            <div class="border border-2 info-job-2">
+                <div class="ms-2 mb-2">
+
+                    <p class="m-0 fw-bold mt-1">Mức thu nhập:</p>
+                    {{job.salary}} VND
+
+                    <p class="m-0 mt-1 fw-bold">Loại hình công việc:</p>
+                    {{job.type}}
+
+                    <p class="m-0 mt-2 fw-bold">Cấp bậc</p>
+                    {{job.level}}
+
+                    <p class="m-0 mt-2 fw-bold">Ngành nghề</p>
+                    {{job.career}}
+
+                    <p class="m-0 mt-2 fw-bold">Khu vực</p>
+                    {{job.location}}
+
+                    <p class="m-0 mt-2 fw-bold">Số lượng</p>
+                    {{job.member}}
+
+                    <p class="m-0 mt-2 fw-bold">Địa điểm làm việc</p>
+                    {{job.address}}
+
+                    <p class="m-0 mt-2 fw-bold">Thời hạn nhận hồ sơ</p>
+                    {{job.deadline}}
+                </div>
+            </div>
+
+            <div class="text-center mt-3">
+                <i class="fa-brands fa-facebook icon-hover fs-3" style="color: #595993;"></i>
+                <i class="fa-brands fa-twitter icon-hover fs-3 mx-3" style="color: #595993;"></i>
+                <i class="fa-brands fa-square-instagram icon-hover fs-3" style="color: #595993;"></i>
+            </div>
+
+        </div>
+    </div>
+</div>

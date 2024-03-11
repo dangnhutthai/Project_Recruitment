@@ -1,0 +1,149 @@
+<div class="div mt-4">
+    <div class="row justify-content-evenly">
+        <div class="col-10">
+            <div class="row">
+                <div class="head-body px-3 py-2 rounded ms-1 text-white text-center fs-3">Việc làm đã xóa
+                    <span class="d-flex float-start mt-2">
+                        <a href="/company/stored">
+                            <i class="fa-solid fa-less-than fs-4 icon-hover" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Quay về" style="color: #ffffff;"></i>
+                            </i>
+                        </a>
+                    </span>
+                </div>
+                {{#each jobs}}
+                <div class="col-4 ps-1">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.title}}</h5>
+                            <h6 class="card-subtitle text-muted">{{this.company}}</h6>
+                            <p class="card-text">{{{this.description}}}</p>
+                        </div>
+
+                            <div class="d-flex flex-bottom align-items-center ms-1 mb-1">
+                                <a class=" btn btn-success" data-bs-target="#restore-complete" data-bs-toggle="modal"
+                                    data-bs-dismiss="modal" data-bs-id="{{this._id}}">
+                                    <i class="fa-solid fa-arrow-rotate-left" style="color: #ffffff;">
+                                    </i> Khôi phục</a>
+                                <a class="btn btn-danger ms-1" data-bs-toggle="modal" data-bs-target="#Delele-Job-Modal"
+                                    data-bs-id="{{this._id}}">
+                                    <i class="fa-solid fa-trash" style="color: #ffffff;">
+                                    </i> Xóa vĩnh viễn</a>
+                            </div>
+                    </div>
+                </div>
+                {{else}}
+                <div class="text-center">
+                    <p class="fs-4 my-3">Thùng rác trống</p>
+                    <div class="my-3">
+
+                        <i class="fa-regular fa-circle-xmark fs-1" style="color: #595993;"></i>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 1 -->
+<div class="modal fade" id="Delele-Job-Modal" tabindex="-1" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-center my-3">Xóa vĩnh viễn</h3>
+                <div class="text-center">
+                    <i class="fa-solid fa-triangle-exclamation fs-1" style="color: #fde58b;"></i>
+                </div>
+                <div class="text-center mt-3">Không thể khôi phục được bài đăng. Bạn có chắc chắn xóa?</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                <button type="button" data-bs-target="#complete-modal" data-bs-toggle="modal" data-bs-dismiss="modal"
+                    class="btn btn-danger">Xóa vĩnh viễn</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2 -->
+<div class="modal fade" id="complete-modal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+    tabindex="-1" shown-bs-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center mt-2">
+                    <i class="fa-solid fa-check fs-1" style="color: #34e5b0;"></i>
+                </div>
+                <div class="text-center my-3">
+                    Xóa vĩnh viễn thành công!
+                </div>
+                <div class="text-center my-1">
+                    <button type="button" id="btn-delete-job" class="btn btn-danger">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 3 -->
+<div class="modal fade" id="restore-complete" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+    tabindex="-1" shown-bs-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center mt-2">
+                    <i class="fa-solid fa-check fs-1" style="color: #34e5b0;"></i>
+                </div>
+                <p class="text-center my-2">Khôi phục thành công</p>
+            </div>
+            <div class="text-center mb-4">
+                <button type="button" class="btn btn-danger btn-restore">Đóng</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{{!-- hidden delete form --}}
+<form method="POST" name="delete-job-form"></form>
+
+{{!-- hidden restore form --}}
+<form method="POST" name="restore-job-form"></form>
+
+<script>
+    var deleteJobModal = document.getElementById('Delele-Job-Modal')
+    var deleteJobForm = document.forms['delete-job-form'];
+    var btnDeleteJob = document.getElementById('btn-delete-job')
+
+    var restoreJobModal = document.getElementById('restore-complete');
+    var restoreJobForm = document.forms['restore-job-form'];
+    var btnRestoreJob = $('.btn-restore');
+
+    var idJob;
+    var idJobRestore;
+
+    deleteJobModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        idJob = button.getAttribute('data-bs-id')
+    })
+
+    btnDeleteJob.onclick = function () {
+        deleteJobForm.action = '/company/' + idJob + '/force?_method=DELETE';
+        deleteJobForm.submit();
+    }
+
+    restoreJobModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        idJobRestore = button.getAttribute('data-bs-id')
+    })
+
+    // restore btn click
+    btnRestoreJob.click(function (e) {
+        e.preventDefault();
+        restoreJobForm.action = '/company/' + idJobRestore + '/restore?_method=PATCH';
+        restoreJobForm.submit();
+    })
+
+</script>

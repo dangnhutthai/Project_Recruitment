@@ -1,0 +1,167 @@
+<div class="container-post">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="position-relative">
+                <h2 class="text-center mt-4">Đăng tin tuyển dụng</h2>
+                <button class="btn-submit position-absolute top-50 start-0 translate-middle-y rounded-pill">
+                    <a href="/company/stored">
+                        <i class="fa-solid fa-less-than px-2 py-1" style="color: #ffffff;"></i>
+                    </a>
+                </button>
+            </div>
+            <div class="row mt-3 bg-com pb-3">
+                <div class="col-6 ps-0 pe-2">
+                    <span class="" id="">Tiêu đề</span>
+                    <form action="/job/store" method="POST">
+                        <div class="input-group mb-2">
+                            <input type="text" name="title" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="">
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span class="" id="">Cấp bậc</span>
+                                <select class="form-select" name="level" aria-label="Default select example">
+                                    <option selected>---</option>
+                                    {{#each levels}}
+                                    <option value="{{this.name}}">{{this.name}}</option>
+                                    {{/each}}
+
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <span class="" id="">Loại hình công việc</span>
+                                <select class="form-select" name="type" aria-label="Default select example">
+                                    <option selected>---</option>
+                                    {{#each types}}
+                                    <option value="{{this.name}}">{{this.name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <span class="" id="">Khu vực</span>
+                                <select class="form-select" name="location" aria-label="Default select example">
+                                    <option selected>---</option>
+                                    {{#each locations}}
+                                    <option value="{{this.name}}">{{this.name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <span class="" id="">Ngành nghề</span>
+                                <select class="form-select" name="career" aria-label="Default select example">
+                                    <option selected>---</option>
+                                    {{#each careers}}
+                                    <option value="{{this.key}}">{{this.name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <span class="" id="">Mức lương</span>
+                                <div class="input-group mb-2">
+                                    <input type="text" name="salary" class="form-control" placeholder="" aria-label=""
+                                        aria-describedby=""><span class="input-group-text">VND</span>
+                                </div>
+
+                            </div>
+                            <div class="col-6">
+                                <span class="" id="">Số lượng tuyển</span>
+                                <div class="input-group mb-2">
+                                    <input type="number" name="member" class="form-control" placeholder="" aria-label=""
+                                        aria-describedby="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <span class="" id="">Địa chỉ làm việc</span>
+                                <div class="input-group mb-2">
+                                    <input type="text" name="address" class="form-control" placeholder="" aria-label=""
+                                        aria-describedby="">
+                                </div>
+                                <span class="" id="">Ngày hết hạn</span>
+                                <div class="input-group">
+                                    <input type="datetime-local" dateOnly name="deadline" class="form-control"
+                                        placeholder="" aria-label="" aria-describedby="">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <span class="">Hồ sơ xin việc</span>
+                                <div class="input-group">
+                                    <textarea class="form-control textarea-lagre" name="material"
+                                        aria-label="With textarea"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="submit" class="btn-submit rounded-pill text-wrap">
+                                <p class="p-2 my-0 mx-5">
+                                    Đăng tin
+                                </p>
+                            </button>
+                        </div>
+                </div>
+
+                <div class="col-6 pe-0 ps-1 ">
+                    <span class="">Mô tả công việc</span>
+                    <div class="input-group">
+                        <textarea class="form-control textarea-lagre" id="description" name="description"
+                            aria-label="With textarea" contenteditable="false"></textarea>
+                    </div>
+                    <div class="mt-2">
+                        <span class="">Yêu cầu công việc</span>
+                        <div class="input-group">
+                            <textarea class="form-control textarea-lagre" id="requirement" name="requirement"
+                                aria-label="With textarea" contenteditable="true"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <span class="">Quyền lợi - Đãi ngộ</span>
+                        <div class="input-group">
+                            <textarea class="form-control textarea-lagre" id="benefit" name="benefit"
+                                aria-label="With textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </form>
+</div>
+
+<script>
+    var editor = ClassicEditor
+        .create(document.querySelector('#description'), {
+            updateSourceElementOnDestroy: true,
+        })
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    var editor2 = ClassicEditor
+        .create(document.querySelector('#requirement'), {
+            updateSourceElementOnDestroy: true,
+        })
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    var editor3 = ClassicEditor
+        .create(document.querySelector('#benefit'), {
+            updateSourceElementOnDestroy: true,
+        })
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
