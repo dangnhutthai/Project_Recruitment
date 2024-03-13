@@ -19,8 +19,9 @@ class CompanyController {
 
     // GET /company/stored
     stored(req, res, next) {
-        Promise.all([job.find({}), job.countDocumentsWithDeleted({
-                deleted: true
+        Promise.all([job.find({ idcom: req.params.id}), job.countDocumentsWithDeleted({
+                deleted: true,
+                idcom: req.params.id
             })])
             .then(([jobs, countDelete]) =>
                 res.render('company/stored', {
@@ -33,14 +34,15 @@ class CompanyController {
 
     // GET /job/create
     create(req, res, next) {
-        Promise.all([job.find({}), location.find({}), level.find({}), type.find({}), career.find({})])
-            .then(([jobs, locations, levels, types, careers]) =>
+        Promise.all([job.find({}), location.find({}), level.find({}), type.find({}), career.find({}), company.findOne({ idcom: req.params.id })])
+            .then(([jobs, locations, levels, types, careers, companys]) =>
                 res.render('jobs/create', {
                     jobs: multipleMongooseToObject(jobs),
                     locations: multipleMongooseToObject(locations),
                     levels: multipleMongooseToObject(levels),
                     types: multipleMongooseToObject(types),
                     careers: multipleMongooseToObject(careers),
+                    company: mongooseToObject(companys),
                 })
             )
             .catch(next)
@@ -95,7 +97,8 @@ class CompanyController {
     // GET /company/trash
     trash(req, res, next) {
         job.findWithDeleted({
-                deleted: true
+                deleted: true,
+                idcom: req.params.id
             })
             .then((jobs) =>
                 res.render('company/trash', {
@@ -153,6 +156,10 @@ class CompanyController {
         console.log(formData)
         res.redirect('/');
 
+    }
+
+    firststep(req, res, next) {
+        res.render('company/firstview')
     }
 }
 

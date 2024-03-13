@@ -12,6 +12,7 @@ const port = 3000;
 const {
   create
 } = require('express-handlebars');
+const { equal } = require('assert');
 
 
 //Connect to DB
@@ -44,21 +45,14 @@ app.engine(
     extname: '.hbs',
     helpers: {
       sum: (a, b) => a + b,
-
-
       isSeeker: (a) => a === 'seeker',
       isCompany: (a) => a === 'company',
-
-
-
-    },
-
+    }
   }),
 );
 
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources/views'));
-
 
 route(app);
 

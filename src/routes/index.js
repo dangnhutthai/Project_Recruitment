@@ -3,9 +3,10 @@ const siteRouter = require('./site');
 const jobsRouter = require('./job');
 const companyRouter = require('./company');
 const authRouter = require('./auth');
+
 const {
     requireAuth,
-    checkUser
+    checkUser,
 } = require('../util/authMiddleware');
 
 function route(app) {

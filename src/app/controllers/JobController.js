@@ -19,7 +19,7 @@ class JobController {
         const formData = {...req.body};
         const Job = new job(formData);
         Job.save();
-        res.redirect('../company/stored');
+        res.redirect('/');
     }
 }
 module.exports = new JobController();

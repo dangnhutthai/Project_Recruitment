@@ -79,6 +79,7 @@ class AuthController {
             res.status(201).json({
                 user: user._id
             });
+                        
         } catch (err) {
             const errors = handleErrors(err);
             res.status(400).json({
@@ -103,6 +104,7 @@ class AuthController {
             res.status(200).json({
                 user: user._id
             });
+
         } catch (err) {
             const errors = handleErrors(err);
             res.status(400).json({

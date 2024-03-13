@@ -28,7 +28,7 @@ const Company = new schema({
 
     idcom: {
         type: String,
-    }
+    },
 
 });
 

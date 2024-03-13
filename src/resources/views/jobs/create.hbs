@@ -4,7 +4,7 @@
             <div class="position-relative">
                 <h2 class="text-center mt-4">Đăng tin tuyển dụng</h2>
                 <button class="btn-submit position-absolute top-50 start-0 translate-middle-y rounded-pill">
-                    <a href="/company/stored">
+                    <a href="/company/stored/{{ user._id }}">
                         <i class="fa-solid fa-less-than px-2 py-1" style="color: #ffffff;"></i>
                     </a>
                 </button>
@@ -16,6 +16,10 @@
                         <div class="input-group mb-2">
                             <input type="text" name="title" class="form-control" placeholder="" aria-label=""
                                 aria-describedby="">
+                            <input type="text" name="idcom" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="" value="{{ user._id }}" hidden>
+                                <input type="text" name="company" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="" value="{{ company.name }}" hidden>
                         </div>
                         <div class="row">
                             <div class="col-6">

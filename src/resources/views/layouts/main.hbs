@@ -15,15 +15,30 @@
 
 </head>
 
+<header>
+     <div id="hidden-items" >
+
+            {{> header }}
+
+        </div>
+</header>
 <body>
+    
     <div class="app">
-   {{> header}}
+
+
+       
+ 
+
         <div class="container-fluid p-0">
 
-            {{{body}}}
-        </div>
+            {{{ body }}}
 
-        {{> footer}}
+  
+        </div>
+{{> footer}}
+
+        
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
@@ -33,6 +48,15 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/a1041a0913.js" crossorigin="anonymous"></script>
+    <script>
+        let path = window.location.pathname;
+        const hiddenitem = document.querySelector('#hidden-items');
+        console.log(path)
+        if (path === '/account' || path === '/company/create') {
+            hiddenitem.classList.add('d-none');
+        }
+    </script>
 </body>
+
 
 </html>
