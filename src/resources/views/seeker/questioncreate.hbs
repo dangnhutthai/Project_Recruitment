@@ -1,0 +1,29 @@
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="staticBackdropLabel">
+                Xác nhận thông tin cá nhân</h5>
+            </div>
+            <div class="modal-body">
+                <a href="createeduexp" class="btn btn-submit ms-3"><i class="fa-solid fa-book" style="color: #ffffff;"></i> Trình độ học vấn</a>
+                <a href="createworkexp" class="btn btn-submit ms-4"><i class="fa-solid fa-briefcase" style="color: #ffffff;"></i> Kinh nghiệm làm việc</a>
+            </div>
+            <div class="modal-footer">
+                <div class="form-text">Lưu ý: Có thể bỏ qua và bổ sung sau</div>
+                <button type="button" class="btn btn-submit">
+                    <a href="/" class="text-decoration-none text-white">
+                        Bỏ qua
+                    </a></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+
+        $('#staticBackdrop').modal('show');
+    };
+</script>

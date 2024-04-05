@@ -138,11 +138,9 @@
 
             if (data.user) {
                 if (typeuser === 'seeker') {
-
                     location.assign('/seeker/first-step');
 
                 } else {
-
                     location.assign('/company/first-step');
 
                 }
@@ -178,7 +176,6 @@
                 }
             });
             const data = await res.json();
-            console.log(data);
             if (data.errors) {
                 emailErrorin.textContent = data.errors.email;
                 passwordErrorin.textContent = data.errors.password;

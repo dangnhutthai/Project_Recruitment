@@ -5,7 +5,7 @@
             <div class="position-relative">
                 <h2 class="text-center mt-4">Chỉnh sửa việc làm</h2>
                 <button class="btn-submit position-absolute top-50 start-0 translate-middle-y rounded-pill">
-                    <a href="/company/stored">
+                    <a href="/company/stored/{{ user._id }}">
                         <i class="fa-solid fa-less-than px-2 py-1" style="color: #ffffff;"></i>
                     </a>
                 </button>
@@ -41,7 +41,7 @@
                         <div class="row mt-2">
                             <div class="col-6">
                                 <span class="" id="">Khu vực</span>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" name="location" aria-label="Default select example">
                                     <option selected>{{job.location}}</option>
                                     {{#each locations}}
                                     <option value="{{this.name}}">{{this.name}}</option>
@@ -87,7 +87,7 @@
                                 <span class="" id="">Ngày hết hạn</span>
                                 <div class="input-group">
                                     <input type="date" required name="deadline" class="form-control"
-                                        value="{{job.deadline}}" min="2024-01-01" max="2024-06-30">
+                                        value="{{convert job.deadline}}" min="2024-01-01" max="2024-06-30">
                                 </div>
                             </div>
                             <div class="col-6">

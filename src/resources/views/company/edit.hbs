@@ -1,80 +1,106 @@
-<div class="container-edit">
+<div class="container-edit mt-4">
     <div class="row justify-content-center">
         <div class="col-10">
-            <div class="position-relative">
-                <h2 class="text-center mt-4">Chỉnh sửa thông tin tài khoản</h2>
+            <div class="head-body px-3 py-2 rounded ms-1 text-white text-center fs-3">Chỉnh sửa thông tin tài khoản
+                <span class="d-flex float-start mt-2">
+                    <a href="../account/{{ user._id }}">
+                        <i class="fa-solid fa-less-than fs-4 icon-hover" data-bs-toggle="tooltip"
+                            data-bs-placement="top" title="Chỉnh sửa thông tin" style="color: #ffffff;"></i>
+                        </i>
+                    </a>
+                </span>
+
             </div>
-            <div class="row mt-3 bg-com pb-3">
+            <div class="row mt-3 bg-com pb-3 mx-1">
                 <div class="col-6">
-                    <span class="" id="">Tên công ty</span>
-                    <form action="/company/{{user._id}}?_method=PUT" method="POST">
-                    
+                    <form action="/company/{{ company._id }}/updateCompany?_method=PUT" method="POST" enctype="multipart/form-data">
+
+                        <span class="" id="">Tên công ty</span>
                         <div class="input-group mb-2">
-                            <input type="text" value="{{job.title}}" name="title" class="form-control" placeholder=""
-                                aria-label="" aria-describedby="">
+                            <input type="text" value="{{ company.name }}" name="name" class="form-control"
+                                placeholder="" aria-label="" aria-describedby="">
                         </div>
 
                         <div class="row mt-2">
                             <div class="col-6">
                                 <span class="" id="">Số điện thoại</span>
                                 <div class="input-group mb-2">
-                                    <input type="text" value="{{job.title}}" name="phone" class="form-control"
+                                    <input type="text" value="{{ company.phone }}" name="phone" class="form-control"
                                         placeholder="" aria-label="" aria-describedby="">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <span class="" id="">Ngày thành lập</span>
                                 <div class="input-group mb-2">
-                                    <input type="text" value="{{job.title}}" name="founding" class="form-control"
-                                        placeholder="" aria-label="" aria-describedby="">
+                                    <input type="date" value="{{company.founding}}" name="founding"
+                                        class="form-control" placeholder="" aria-label="" aria-describedby="">
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-6">
-                               
-                                <span class="" id="">Địa chỉ làm việc</span>
+
+                                <span class="" id="">Địa chỉ</span>
                                 <div class="input-group mb-2">
-                                    <input type="text" name="address" class="form-control" value="{{ user._id }}"
+                                    <input type="text" name="address" class="form-control" value="{{ company.address }}"
                                         placeholder="" aria-label="" aria-describedby="">
-                               
-                            </div>
+
+                                </div>
 
                             </div>
                             <div class="col-6">
                                 <span class="" id="">Website</span>
                                 <div class="input-group mb-2">
-                                    <input type="number" name="member" class="form-control" value="{{job.member}}"
+                                    <input type="text" name="weburl" class="form-control" value="{{ company.weburl }}"
                                         placeholder="" aria-label="" aria-describedby="">
                                 </div>
                             </div>
 
                         </div>
-                        <div class="row">
-                            
-                           
-                            <div class="input-group" hidden>
-                                <input type="date" required name="idcom" class="form-control" value="{{ user._id }}">
+                        <div class="row mt-2 justify-content-center text-center">
+                            <div class="mb-2">
+                                <img class="w-25" src="/img/uploads/{{ company.image }}" alt="">
                             </div>
-
+                            <div class="input-group mb-3 w-50 ">
+                                <input type="file" name="image" class="form-control">
+                                 <input type="text" name="imageurl" class="form-control" value="{{ company.image }}"
+                                        placeholder="" aria-label="" aria-describedby="" hidden>
+                            </div>
                         </div>
+                        
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="submit" class="btn-submit rounded-pill text-wrap">
+                            <button type="submit" class="btn-submit rounded-pill text-wrap text-center">
                                 <p class="p-2 my-0 mx-5">
                                     Lưu lại
                                 </p>
+
                             </button>
                         </div>
                 </div>
-                <div class="col-6">
+                <div class="col-6 p-0">
                     <span class="" id="">Giới thiệu</span>
                     <div class="input-group mb-2">
-                        <textarea type="text" name="address" class="form-control"></textarea>
+                        <textarea type="text" id="introduce" name="introduce"
+                            class="form-control">{{ company.introduce }}</textarea>
                     </div>
                 </div>
             </div>
-    </form>
+            </form>
+
         </div>
     </div>
-
 </div>
+
+
+<script>
+    var editor = ClassicEditor
+        .create(document.querySelector('#introduce'), {
+            updateSourceElementOnDestroy: true,
+        })
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>

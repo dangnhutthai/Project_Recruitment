@@ -18,7 +18,6 @@ const Job = new schema({
     },
     description: {
         type: String,
-        default: 'Something here'
     },
     career: {
         type: String
@@ -41,8 +40,8 @@ const Job = new schema({
     member: {
         type: String
     },
-    phone: {
-        type: Number
+    companyphone: {
+        type: String
     },
     salary: {
         type: Number

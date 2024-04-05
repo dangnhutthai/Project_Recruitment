@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const schema = mongoose.Schema;
 const {
     isEmail,
-    equals
 } = require('validator');
 const bcrypt = require('bcrypt');
 
@@ -11,7 +10,7 @@ const User = new schema({
     email: {
         type: String,
         required: [true, 'Vui lòng nhập email'],
-        unique: [true, 'Email này đã đươc đăng kí'],
+        unique: [true, 'Email này đã được đăng kí'],
         lowercase: true,
         validate: [isEmail, 'Vui lòng nhập email hợp lệ']
     },

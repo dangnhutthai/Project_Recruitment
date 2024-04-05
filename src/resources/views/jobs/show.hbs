@@ -2,7 +2,7 @@
     <div class="row mt-4 justify-content-center info-job">
         <div class="col-7 ">
             <h1 class="mt-2 mb-4">{{job.title}}</h1>
-
+            <h4 class="mt-2 mb-4 text-muted">{{job.company}}</h4>
             <h4 class="position-relative">Mô tả công việc</h4>
 
 
@@ -75,7 +75,7 @@
                                 Email
                             </td>
                             <td>
-                                {{ user.email }}
+                                {{ job.email }}
                             </td>
                         </tr>
                         <tr>
@@ -83,7 +83,7 @@
                                 Số điện thoại
                             </td>
                             <td>
-
+                                {{ job.companyphone }}
                             </td>
                         </tr>
                     </table>
@@ -93,10 +93,28 @@
 
         </div>
         <div class="col-3">
-
-            <button class="btn btn-submit w-100 my-1 mt-4">
+            {{#if (isSeeker user.type_user)}}
+            {{#if works}}
+            {{#each works}}
+            {{#if (isEqual user._id work.userId)}}
+            {{#if (isEqual works.jobId job._id)}}
+            <a class="btn btn-secondary btn-disable w-100 my-1 mt-4">
+                Bạn đã ứng tuyển rồi!
+            </a>
+            {{/if}}
+            {{/if}}
+            {{/each}}
+            {{else}}
+            <a class="btn btn-submit w-100 my-1 mt-4" data-bs-toggle="modal" data-bs-target="#Confirm-Modal"
+                data-bs-id="{{user._id}}">
                 Ứng tuyển
-            </button>
+            </a>
+            {{/if}}
+            {{else}}
+            <a href="/company/{{job.slug}}/candidate" class="btn btn-submit w-100 my-1 mt-4">
+                Danh sách ứng viên
+            </a>
+            {{/if}}
 
             <div class="border border-2 info-job-2">
                 <div class="ms-2 mb-2">
@@ -123,7 +141,7 @@
                     {{job.address}}
 
                     <p class="m-0 mt-2 fw-bold">Thời hạn nhận hồ sơ</p>
-                    {{job.deadline}}
+                    {{convert job.deadline}}
                 </div>
             </div>
 
@@ -136,3 +154,75 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal 1 -->
+<div class="modal fade" id="Confirm-Modal" tabindex="-1" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-center my-3">Xác nhận ứng tuyển</h3>
+                <div class="text-center">
+                    <i class="fa-solid fa-triangle-exclamation fs-1" style="color: #fde58b;"></i>
+                </div>
+                <div class="text-center mt-3">Bạn có chắc chắn ứng tuyển công việc này?</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                <button type="button" data-bs-target="#complete-modal" data-bs-toggle="modal" data-bs-dismiss="modal"
+                    class="btn btn-danger">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Modal 2 --}}
+<div class="modal fade" id="complete-modal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+    tabindex="-1" shown-bs-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center mt-2">
+                    <i class="fa-solid fa-check fs-1" style="color: #34e5b0;"></i>
+                </div>
+                <div class="text-center my-3">
+                    Ứng tuyển thành công!
+                </div>
+                <div class="text-center my-1">
+                    <button type="button" id="btn-complete-apply" class="btn btn-danger">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- hidden form --}}
+<form method="POST" name="apply-form">
+    <input type="text" name="jobId" hidden value="{{ job._id }}">
+    <input type="text" name="userId" hidden value="{{ user._id }}">
+    <input type="text" name="slug" hidden value="{{ job.slug }}">
+    <input type="text" name="name" hidden value="{{ job.title }}">
+    <input type="text" name="userEmail" hidden value="{{ user.email }}">
+</form>
+
+<script>
+    let changeIcon = function (icon) {
+        icon.classList.toggle('fa-arrow-down');
+        icon.classList.toggle('fa-arrow-up');
+    }
+
+    var confirmModal = document.getElementById('Confirm-Modal')
+    var id
+    var applyForm = document.forms['apply-form']
+
+    confirmModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        id = button.getAttribute('data-bs-id')
+    })
+
+    var btnDeleteJob = document.getElementById('btn-complete-apply')
+    btnDeleteJob.onclick = function () {
+        applyForm.action = '/work/' + id + '/applyJob?_method=POST';
+        applyForm.submit();
+    }
+</script>

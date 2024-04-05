@@ -344,7 +344,7 @@ body {
 }
 
 .card-title {
-    height: 80px;
+    height: 60px;
 }
 
 .card-body {
@@ -363,4 +363,13 @@ body {
 .text-title {
     font-weight: bold;
     font-size: 21px;
+}
+
+.avatar {
+    width: 300px;
+    height: 300px;
+}
+
+.icon-hover-2:hover {
+    color: #595993 !important;
 }

@@ -1,0 +1,83 @@
+<div class="container-edit mt-4">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="head-body px-3 py-2 rounded ms-1 text-white text-center fs-3">Đổi mật khẩu
+                <span class="d-flex float-start mt-2">
+                    <a href="../account/{{ user._id }}">
+                        <i class="fa-solid fa-less-than fs-4 icon-hover" data-bs-toggle="tooltip"
+                            data-bs-placement="top" title="Chỉnh sửa thông tin" style="color: #ffffff;"></i>
+                        </i>
+                    </a>
+                </span>
+
+            </div>
+            <div class="row mt-3 bg-com pb-3 mx-1 justify-content-center">
+                <div class="col-5">
+                    <form action="/company/{{user._id}}/changepwCompany" method="POST" name="changepwForm">
+                        <span class="" id=""></span>
+                        <div class="input-group mb-2 mt-2">
+                            <input type="password" name="oldpw" class="form-control" placeholder="Nhập mật khẩu cũ"
+                                aria-label="" aria-describedby="">
+                        </div>
+                        <div class="row mt-2">
+                            <span class="" id=""></span>
+                            <div class="input-group mb-2">
+                                <input type="password" name="newpw" class="form-control" placeholder="Nhập mật khẩu mới"
+                                    aria-label="" aria-describedby="">
+                            </div>
+                            <div class="password error text-danger"></div>
+                            <input type="text" name="oldpw2" class="form-control" placeholder="Nhập mật khẩu mới"
+                                aria-label="" aria-describedby="" value="{{user.password}}">
+                        </div>
+                        <div class="d-flex justify-content-center mt-2">
+                            <button type="submit" class="btn-submit rounded-pill text-wrap text-center">
+                                <p class="p-2 my-0 mx-5">
+                                    Xác nhận
+                                </p>
+                            </button>
+                        </div>
+                </div>
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Confirm-Modal" tabindex="-1" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-center my-3">Chú ý</h3>
+                <div class="text-center">
+                    <i class="fa-solid fa-triangle-exclamation fs-1" style="color: #fde58b;"></i>
+                </div>
+                <div class="text-center mt-3">Bạn có chắc chắn đổi mật khẩu?</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                <button type="button" id="confirm" data-bs-target="" data-bs-toggle="modal" data-bs-dismiss="modal"
+                    class="btn btn-danger">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Confirm-Modal-2" tabindex="-1" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-center my-3">Khong thanh cogn</h3>
+                <div class="text-center">
+                    <i class="fa-solid fa-triangle-exclamation fs-1" style="color: #fde58b;"></i>
+                </div>
+                <div class="text-center mt-3">Bạn có chắc chắn đổi mật khẩu?</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                <button type="button" data-bs-target="" data-bs-toggle="modal" data-bs-dismiss="modal"
+                    class="btn btn-danger">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -30,6 +30,15 @@ const Company = new schema({
         type: String,
     },
 
+    imageurl: {
+        type: String,
+        default: 'new',
+    },
+
+    image: {
+        type: String,
+        default: 'new',
+    }
 });
 
 module.exports = mongoose.model('Company', Company)

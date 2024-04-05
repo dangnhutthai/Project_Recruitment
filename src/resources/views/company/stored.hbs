@@ -43,7 +43,7 @@
 
                         <i class="fa-solid fa-hourglass fs-1" style="color: #595993;"></i>
                     </div>
-                    <a href="/company/createJob" class="text-decoration-none fs-5">Đăng tin ngay!!</a>
+                    <a href="/company/createJob/{{user._id}}" class="text-decoration-none fs-5">Đăng tin ngay!!</a>
                 </div>
                 {{/each}}
             </div>
@@ -70,6 +70,8 @@
         </div>
     </div>
 </div>
+
+{{!-- Modal 2 --}}
 <div class="modal fade" id="complete-modal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
     tabindex="-1" shown-bs-modal="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -101,6 +103,7 @@
         var button = event.relatedTarget
         idJob = button.getAttribute('data-bs-id')
     })
+    
     var btnDeleteJob = document.getElementById('btn-delete-job')
     btnDeleteJob.onclick = function () {
         deleteJobForm.action = '/company/' + idJob + '?_method=DELETE';

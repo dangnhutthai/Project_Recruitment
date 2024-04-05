@@ -1,0 +1,74 @@
+<div class="container-edit mt-5">
+    <div class="row justify-content-center">
+        <div class="col-6 mt-3">
+            <div class="head-body px-3 py-2 rounded ms-1 text-white text-center fs-3">
+                Trình độ học vấn
+            </div>
+            <div class="row mt-1 bg-com pb-3 mx-1 justify-content-center">
+                <div class="col-10 pe-3">
+                    <span class="" id="">Bằng cấp</span>
+                    <form name="storeeduexp" method="POST">
+                        <div class="input-group mb-2">
+                            <input type="text" name="certificate" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="" required>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <span class="" id="">Ngành</span>
+                                <div class="input-group mb-2">
+                                    <input type="text" name="brand" class="form-control" placeholder="" aria-label=""
+                                        aria-describedby="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <span class="" id="">Ngày nhận bằng</span>
+                                <div class="input-group mb-2">
+                                    <input type="date" name="graduationday" class="form-control" placeholder=""
+                                        aria-label="" aria-describedby="" required>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <span class="" id="">Nơi cấp bằng</span>
+                        <div class="input-group mb-2">
+                            <input type="text" name="school" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="" required>
+                        </div>
+                        <div class="input-group mb-2">
+                            <input type="text" name="idseeker" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="" value="{{ user._id }}" hidden>
+
+
+                        </div>
+                            
+                            <div class="d-flex justify-content-center mt-2">
+                                <button class="btn-submit rounded-pill text-wrap">
+                                    <p class="p-2 my-0 mx-5">
+                                        Tạo
+                                    </p>
+                                </button>
+                            </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const eduexpForm = document.forms['storeeduexp'];
+    eduexpForm.addEventListener('submit', (e) => {
+        //const valuecheck = eduexpForm.school.value;
+        //if (valuecheck === '') {
+            //console.log('empty')
+            //e.preventDefault();
+            //location.assign('createworkexp');
+        //} else {
+           eduexpForm.action = 'storeeduexp?_method=POST';
+            eduexpForm.submit();
+        //}
+    })
+</script>

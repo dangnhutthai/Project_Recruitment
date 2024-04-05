@@ -18,8 +18,12 @@
                                 aria-describedby="">
                             <input type="text" name="idcom" class="form-control" placeholder="" aria-label=""
                                 aria-describedby="" value="{{ user._id }}" hidden>
-                                <input type="text" name="company" class="form-control" placeholder="" aria-label=""
+                            <input type="text" name="company" class="form-control" placeholder="" aria-label=""
                                 aria-describedby="" value="{{ company.name }}" hidden>
+                            <input type="text" name="companyphone" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="" value="{{ company.phone }}" hidden>
+                            <input type="text" name="email" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="" value="{{ user.email }}" hidden>
                         </div>
                         <div class="row">
                             <div class="col-6">
@@ -57,7 +61,7 @@
                                 <select class="form-select" name="career" aria-label="Default select example">
                                     <option selected>---</option>
                                     {{#each careers}}
-                                    <option value="{{this.key}}">{{this.name}}</option>
+                                    <option value="{{this.name}}">{{this.name}}</option>
                                     {{/each}}
                                 </select>
                             </div>
@@ -74,8 +78,8 @@
                             <div class="col-6">
                                 <span class="" id="">Số lượng tuyển</span>
                                 <div class="input-group mb-2">
-                                    <input type="number" name="member" class="form-control" placeholder="" aria-label=""
-                                        aria-describedby="">
+                                    <input type="number" min="1" max="30" name="member" class="form-control"
+                                        placeholder="" aria-label="" aria-describedby="">
                                 </div>
                             </div>
                         </div>

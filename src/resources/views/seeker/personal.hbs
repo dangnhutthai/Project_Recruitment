@@ -1,0 +1,357 @@
+<div class="div mt-4">
+    <div class="row justify-content-evenly">
+        <div class="col-10">
+            <div class="head-body px-3 pt-2 rounded ms-1 text-white text-center fs-3">Thông tin tài khoản
+                <span class="d-flex float-start mt-2">
+                    <a href="../../seeker/{{ user._id }}/editinfo">
+                        <i class="fa-solid fa-pen fs-4 icon-hover" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Chỉnh sửa thông tin" style="color: #ffffff;"></i>
+                        </i>
+                    </a>
+                </span>
+                <span class="d-flex float-end mt-2 position-relative">
+                    <a href="">
+                        <i class="fa-solid fa-key fs-4 icon-hover" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Đổi mật khẩu" style="color: #ffffff;"></i>
+                        </i>
+                    </a>
+
+                </span>
+            </div>
+            <div class="row bg-com mx-1 my-2 pb-3">
+                <div class="row justify-content-center mb-3">
+                    <img src="/img/uploads/{{ seeker.image }}" class="avatar rounded-pill" alt="">
+                </div>
+                <div class="col-3">
+                    <div class="ms-3">
+
+                        <div class="text-title">
+                            Họ và tên:
+                        </div>
+                        {{ seeker.name }}
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="text-title">
+                        Email:
+                    </div>
+                    {{ user.email }}
+                </div>
+                <div class="col-2">
+                    <div class="text-title">
+                        Giới tính:
+                    </div>
+                    {{ seeker.gender }}
+                </div>
+                <div class="col-2">
+                    <div class="text-title">
+                        Ngày sinh:
+                    </div>
+                    {{convert seeker.birthday }}
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="ms-3">
+
+                            <div class="text-title mt-2">
+                                Địa chỉ:
+                            </div>
+                            {{ seeker.address }}
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="ms-3">
+
+                            <div class="text-title mt-2">
+                                Số điện thoại:
+                            </div>
+                            {{ seeker.phone }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="div mt-4">
+    <div class="row justify-content-evenly">
+        <div class="col-10">
+            <div class="head-body px-3 pt-2 rounded ms-1 text-white text-center fs-3">Trình độ học vấn
+                <span class="d-flex float-start mt-2">
+                    <a href="../createeduexp">
+                        <i class="fa-solid fa-plus fs-4 icon-hover" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Thêm học vấn" style="color: #ffffff;"></i>
+                        </i>
+                    </a>
+                </span>
+
+            </div>
+            <div class="row bg-com mx-1 my-2 pb-3">
+
+                {{#if eduexps}}
+                {{#each eduexps}}
+                <div class="col-10">
+
+                    <div class="row mb-2">
+                        <div class="col-4">
+                            <div>
+
+                                <div class="text-title">
+                                    Bằng cấp
+                                </div>
+                                {{ this.certificate }}
+                            </div>
+                            <div>
+                                <div class="text-title mt-1">
+                                    Nơi cấp
+                                </div>
+                                {{ this.school }}
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-title">
+                                Ngành
+                            </div>
+                            {{ this.brand }}
+                        </div>
+                        <div class="col-4">
+                            <div class="text-title">
+                                Ngày nhận bằng
+                            </div>
+                            {{convert this.graduationday }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="d-flex flex-bottom align-items-center ms-1 mb-1 button-details">
+                        <a href="/seeker/{{this._id}}/editeduexp" class="btn btn-warning mx-1">Sửa</a>
+                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delele-Edu-Modal"
+                            data-bs-id="{{this._id}}">Xóa</a>
+                    </div>
+                </div>
+                <hr>
+                {{/each}}
+                {{else}}
+
+                <div class="text-center">
+                    <p class="fs-4 my-3">Thông tin học vấn trống</p>
+                    <div class="my-3">
+
+                        <i class="fa-solid fa-hourglass fs-1" style="color: #595993;"></i>
+                    </div>
+                    <a href="/seeker/createeduexp" class="text-decoration-none fs-5">Bổ sung ngay</a>
+                </div>
+
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="div mt-4">
+    <div class="row justify-content-evenly">
+        <div class="col-10">
+            <div class="head-body px-3 pt-2 rounded ms-1 text-white text-center fs-3">Kinh nghiệm làm việc
+                <span class="d-flex float-start mt-2">
+                    <a href="../createworkexp">
+                        <i class="fa-solid fa-plus fs-4 icon-hover" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Thêm kinh nghiệm" style="color: #ffffff;"></i>
+                        </i>
+                    </a>
+                </span>
+
+            </div>
+            <div class="row bg-com mx-1 my-2 pb-3">
+                {{#if workexps}}
+                {{#each workexps}}
+                <div class="col-10">
+
+                    <div class="row">
+
+
+                        <div class="col-4">
+                            <div>
+                                <div class="text-title">
+                                    Tên công ty
+                                </div>
+                                {{ this.companyname }}
+                            </div>
+
+                        </div>
+                        <div class="col-4">
+                            <div class="text-title">
+                                Ngày làm việc
+                            </div>
+                            {{convert this.startday }}
+                        </div>
+                        <div class="col-4">
+                            <div class="text-title">
+                                Ngày kết thúc
+                            </div>
+                            {{convert this.endday }}
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <div>
+                                    <div class="text-title mt-1">
+                                        Vị trí
+                                    </div>
+                                    {{ this.position }}
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="ms-2">
+                                    <div class="text-title mt-1">
+                                        Địa chỉ công ty
+                                    </div>
+                                    {{ this.companyaddress }}
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="d-flex flex-bottom align-items-center ms-1 mb-1 button-details">
+                        <a href="/seeker/{{this._id}}/editworkexp" class="btn btn-warning mx-1">Sửa</a>
+                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delele-Exp-Modal"
+                            data-bs-id="{{this._id}}">Xóa</a>
+                    </div>
+                </div>
+                <hr>
+                {{/each}}
+
+                {{else}}
+
+                <div class="text-center">
+                    <p class="fs-4 my-3">Thông tin kinh nghiệm trống</p>
+                    <div class="my-3">
+
+                        <i class="fa-solid fa-hourglass fs-1" style="color: #595993;"></i>
+                    </div>
+                    <a href="/seeker/createworkexp" class="text-decoration-none fs-5">Bổ sung ngay</a>
+                </div>
+
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+<!-- Modal 1 -->
+<div class="modal fade" id="Delele-Exp-Modal" tabindex="-1" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-center my-3">Xóa mục này</h3>
+                <div class="text-center">
+                    <i class="fa-solid fa-triangle-exclamation fs-1" style="color: #fde58b;"></i>
+                </div>
+                <div class="text-center mt-3">Bạn có chắc chắn xóa?</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                <button type="button" data-bs-target="#complete-modal-work" data-bs-toggle="modal"
+                    data-bs-dismiss="modal" class="btn btn-danger">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2-->
+<div class="modal fade" id="complete-modal-work" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+    tabindex="-1" shown-bs-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center mt-2">
+                    <i class="fa-solid fa-check fs-1" style="color: #34e5b0;"></i>
+                </div>
+                <div class="text-center my-3">
+                    Xóa thành công!
+                </div>
+                <div class="text-center my-1">
+                    <button type="button" id="btn-delete-work" class="btn btn-danger">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 3 -->
+<div class="modal fade" id="Delele-Edu-Modal" tabindex="-1" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-center my-3">Xóa mục này</h3>
+                <div class="text-center">
+                    <i class="fa-solid fa-triangle-exclamation fs-1" style="color: #fde58b;"></i>
+                </div>
+                <div class="text-center mt-3">Bạn có chắc chắn xóa?</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                <button type="button" data-bs-target="#complete-modal-edu" data-bs-toggle="modal"
+                    data-bs-dismiss="modal" class="btn btn-danger">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 4 -->
+<div class="modal fade" id="complete-modal-edu" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+    tabindex="-1" shown-bs-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center mt-2">
+                    <i class="fa-solid fa-check fs-1" style="color: #34e5b0;"></i>
+                </div>
+                <div class="text-center my-3">
+                    Xóa thành công!
+                </div>
+                <div class="text-center my-1">
+                    <button type="button" id="btn-delete-edu" class="btn btn-danger">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- hidden form --}}
+<form method="POST" name="delete-work-form"></form>
+<form method="POST" name="delete-edu-form"></form>
+
+
+<script>
+    var deleteWorkModal = document.getElementById('Delele-Exp-Modal')
+    var idWork
+    var deleteWorkForm = document.forms['delete-work-form']
+
+    deleteWorkModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        idWork = button.getAttribute('data-bs-id')
+    })
+    var btnDeleteWork = document.getElementById('btn-delete-work')
+    btnDeleteWork.onclick = function () {
+        deleteWorkForm.action = '/seeker/' + idWork + '/workexp?_method=DELETE';
+        deleteWorkForm.submit();
+    }
+
+    var deleteEduModal = document.getElementById('Delele-Edu-Modal')
+    var idEdu
+    var deleteEduForm = document.forms['delete-edu-form']
+
+    deleteEduModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        idEdu = button.getAttribute('data-bs-id')
+    })
+    var btnDeleteEdu = document.getElementById('btn-delete-edu')
+    btnDeleteEdu.onclick = function () {
+        deleteEduForm.action = '/seeker/' + idEdu + '/eduexp?_method=DELETE';
+        deleteEduForm.submit();
+    }
+
+</script>

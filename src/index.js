@@ -12,7 +12,12 @@ const port = 3000;
 const {
   create
 } = require('express-handlebars');
-const { equal } = require('assert');
+const {
+  equal
+} = require('assert');
+const {
+  isEmpty
+} = require('validator');
 
 
 //Connect to DB
@@ -47,6 +52,17 @@ app.engine(
       sum: (a, b) => a + b,
       isSeeker: (a) => a === 'seeker',
       isCompany: (a) => a === 'company',
+      isNull: (a) => a === null,
+      convert: (a) => {
+        var date = new Date(a),
+          mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+          day = ("0" + date.getDate()).slice(-2);
+        return [date.getFullYear(), mnth, day].join("-");
+
+      },
+      isGender: (a) => a === 'Nữ',
+      isApply: (a) => a === false,
+      isEqual: (a, b) => a == b,
     }
   }),
 );

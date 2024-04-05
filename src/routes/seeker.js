@@ -1,0 +1,24 @@
+const express = require('express');
+const router = express.Router();
+const fileUpload = require('../util/fileUpload');
+const seekerController = require('../app/controllers/SeekerController');
+
+router.get('/first-step', seekerController.firstview);
+router.get('/question', seekerController.question);
+router.get('/create', seekerController.create);
+router.get('/:id/myjob', seekerController.showmyjob);
+router.post('/storeinfo', seekerController.storeinfo);
+router.get('/createeduexp', seekerController.createeduexp);
+router.post('/storeeduexp', seekerController.storeeduexp);
+router.get('/createworkexp', seekerController.createworkexp);
+router.post('/storeworkexp', seekerController.storeworkexp);
+router.get('/account/:id', seekerController.showaccount);
+router.delete('/:id/workexp', seekerController.deleteWork);
+router.delete('/:id/eduexp', seekerController.deleteEdu);
+router.get('/:id/editWorkExp', seekerController.showeditwork);
+router.get('/:id/editinfo', seekerController.showeditinfo);
+router.put('/:id/updateinfo', fileUpload("./src/public/img/uploads"), seekerController.updateinfo);
+router.get('/:id/editeduexp', seekerController.showeditedu);
+router.put('/:id/editeduexp', seekerController.updateeduexp);
+router.put('/:id/editworkexp', seekerController.updateworkexp);
+module.exports = router;

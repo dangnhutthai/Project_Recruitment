@@ -1,0 +1,143 @@
+<div class="div mt-4" style="height: 400px">
+    <div class="row justify-content-evenly">
+        <div class="col-10">
+            <div class="row">
+                <div class="head-body px-3 py-2 rounded ms-1 text-white text-center fs-3">Danh sách ứng viên
+                    <span class="d-flex float-start mt-2">
+                        <a href="/job//{{ job.slug }}">
+                            <i class="fa-solid fa-less-than fs-4 icon-hover" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Đăng việc làm mới" style="color: #ffffff;">
+                            </i>
+                        </a>
+                    </span>
+
+                </div>
+                <div class="row bg-com mx-1 my-2 justify-content-center">
+                    <div class="col-7">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Email ứng viên</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {{#each works}}
+                                <tr class="text-center">
+
+                                    <td>{{this.userEmail}}</td>
+                                    <td>
+                                        <a href="" class="btn btn-secondary">Xem thông tin</a>
+                                    </td>
+                                    <td>
+                                        {{#if (isApply this.isAccept)}}
+                                        <form method="POST" action="/work/eject/{{this._id}}?_method=PATCH">
+                                            <input type="text" name="isAccept" class="form-control" value="true" hidden>
+                                            <input type="text" name="userid" class="form-control"
+                                                value="{{this.userId}}" hidden>
+                                            <button type="submit" class="btn btn-warning">Từ chối <i
+                                                    class="fa-solid fa-ban" style="color: #000000;"></i></button>
+                                        </form>
+                                        <button class="btn btn-submit mt-1" data-bs-toggle="modal"
+                                            data-bs-target="#acceptModal">Chấp nhận <i class="fa-solid fa-check"
+                                                style="color: #ffffff;"></i></button>
+
+                                        <div class="modal fade" id="acceptModal" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Chấp nhận tuyển
+                                                            ứng viên này?</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="/work/accept/{{this._id}}?_method=PATCH"
+                                                            method="POST">
+
+                                                            <span class="fw-bold mb-2" id="">THÔNG BÁO PHỎNG VẤN</span>
+                                                            <div class="input-group mb-2">
+                                                                <input type="date" name="interviewDate"
+                                                                    class="form-control w-25" placeholder=""
+                                                                    aria-label="" aria-describedby="" required>
+                                                                <input type="text" name="userid" class="form-control"
+                                                                    value="{{this.userId}}" hidden>
+                                                            </div>
+                                                            <span class="" id=""></span>
+                                                            <div class="input-group mb-2">
+                                                                <input type="text" name="interviewAddress"
+                                                                    class="form-control" placeholder="Địa chỉ"
+                                                                    aria-label="" aria-describedby="" required>
+                                                                <input type="text" name="isAccept" class="form-control"
+                                                                    value="true" hidden>
+
+                                                            </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Đóng</button>
+                                                        <button type="submitt" class="btn btn-primary">Xác nhận</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{else}}
+                                        <button class="btn btn-success">Đã duyệt <i class="fa-solid fa-check"
+                                                style="color: #ffffff;"></i></button>
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{{!-- eject Modal --}}
+<div class="modal fade" id="ejectModal" tabindex="-1" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-center my-3">Từ chối ứng viên</h3>
+                <div class="text-center">
+                    <i class="fa-solid fa-triangle-exclamation fs-1" style="color: #fde58b;"></i>
+                </div>
+                <div class="text-center mt-3">Bạn có chắc chắn từ chối ứng viên này?</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                <button type="button" data-bs-target="#complete-modal" data-bs-toggle="modal" data-bs-dismiss="modal"
+                    class="btn btn-danger" id="btn-confirm-eject">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    var deleteJobModal = document.getElementById('ejectModal')
+    var id
+    var deleteJobForm = document.forms['eject-form']
+
+    deleteJobModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        id = button.getAttribute('data-bs-id')
+    })
+
+    var btnDeleteJob = document.getElementById('btn-confirm-eject')
+    btnDeleteJob.onclick = function () {
+        deleteJobForm.action = '/work/eject/' + id + '?_method=PATCH';
+        deleteJobForm.submit();
+    }
+</script>

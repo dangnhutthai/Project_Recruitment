@@ -3,6 +3,8 @@ const siteRouter = require('./site');
 const jobsRouter = require('./job');
 const companyRouter = require('./company');
 const authRouter = require('./auth');
+const seekersRouter = require('./seeker');
+const worksRouter = require('./work');
 
 const {
     requireAuth,
@@ -13,8 +15,10 @@ function route(app) {
     app.get('*', checkUser);
     app.use('/company', requireAuth, companyRouter);
     app.use('/job', jobsRouter);
+    app.use('/seeker', seekersRouter);
     app.use('/news', newsRouter);
     app.use('/account', authRouter);
+    app.use('/work', worksRouter);
     app.use('/', siteRouter);
 }
 

@@ -3,27 +3,30 @@
         <div class="col-10">
             <div class="head-body px-3 py-2 rounded ms-1 text-white text-center fs-3">Thông tin tài khoản
                 <span class="d-flex float-start mt-2">
-                    <a href="/company/editCom">
+                    <a href="../{{ company._id }}/editCompany">
                         <i class="fa-solid fa-pen fs-4 icon-hover" data-bs-toggle="tooltip" data-bs-placement="top"
                             title="Chỉnh sửa thông tin" style="color: #ffffff;"></i>
                         </i>
                     </a>
                 </span>
-                <span class="d-flex float-end mt-2 position-relative">
-                    <a href="/company/trash">
+                {{!-- <span class="d-flex float-end mt-2 position-relative">
+                    <a href="../{{ company._id }}/changepwCompany">
                         <i class="fa-solid fa-key fs-4 icon-hover" data-bs-toggle="tooltip" data-bs-placement="top"
                             title="Đổi mật khẩu" style="color: #ffffff;"></i>
                         </i>
                     </a>
 
-                </span>
+                </span> --}}
             </div>
+
             <div class="row bg-com mx-1 my-2">
 
+                <div class="row justify-content-center mb-3">
+                    <img src="/img/uploads/{{ company.image }}" class="avatar rounded-pill" alt="">
+                </div>
                 <div class="col-8">
                     <div>
                         <div class="text-title">
-
                             Tên công ty:
                         </div>
                         {{ company.name }}
@@ -56,13 +59,13 @@
                         <div class="text-title mt-2">
                             Giới thiệu:
                         </div>
-                        {{ company.introduce }}
+                        {{{ company.introduce }}}
                     </div>
                     <div class="col-8">
                         <div class="text-title mt-2">
                             Ngày thành lập:
                         </div>
-                        {{ company.founding }}
+                        {{convert company.founding }}
 
                     </div>
                     <div class="col-4 ps-4">
@@ -71,11 +74,13 @@
                             Website:
                         </div>
                         {{ company.weburl }}
-
                     </div>
-
-
+                </div>
+                <div class="text-center">
                 </div>
             </div>
         </div>
+        <div>
+        </div>
     </div>
+</div>

@@ -11,7 +11,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item mx-2">
-                            <a class="nav-link active text-white" aria-current="page" href="/">Trang chủ</a>
+                            <a class="nav-link active text-white ms-2" aria-current="page" href="/">Trang chủ</a>
                         </li>
 
                         <li class="nav-item">
@@ -28,21 +28,25 @@
                         {{#if user}}
                         {{#if (isSeeker user.type_user)}}
                         <div class="dropdown">
+                            <span class="text-white me-1">Xin chào</span>
+
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="true">
 
                                 {{ user.email }}
 
-
                                 {{/if}}
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Việc làm của tôi</a></li>
-                                <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
+                                <li><a class="dropdown-item" href="../../seeker/{{ user._id }}/myjob">Việc làm của
+                                        tôi</a></li>
+                                <li><a class="dropdown-item" href="../../seeker/account/{{ user._id }}">Thông tin tài
+                                        khoản</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li> <a class="dropdown-item text-decoration-none text-dark" href="/account/logout">Đăng
+                                <li> <a class="dropdown-item text-decoration-none text-dark" href="/account/logout"><i
+                                            class="fa-solid fa-power-off" style="color: #000000;"></i> Đăng
                                         xuất</a>
                                 </li>
                             </ul>
@@ -50,25 +54,27 @@
                         {{#if (isCompany user.type_user)}}
                         <div class="dropdown">
                             <span class="text-white me-1">Xin chào</span>
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" aria-expanded="true">
+                            <button class="btn btn-secondary dropdown-toggle me-4" type="button"
+                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
                                 {{ user.email }}
                                 {{/if}}
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="../../company/stored/{{ user._id }}">Bài đăng của tôi</a></li>
-                                <li><a class="dropdown-item" href="../company/account/{{ user._id }}">Thông tin tài
+                                <li><a class="dropdown-item" href="../../company/stored/{{ user._id }}">Bài đăng của
+                                        tôi</a></li>
+                                <li><a class="dropdown-item" href="../../company/account/{{ user._id }}">Thông tin tài
                                         khoản</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li> <a class="dropdown-item text-decoration-none text-dark" href="/account/logout">Đăng
+                                <li> <a class="dropdown-item text-decoration-none text-dark" href="/account/logout"><i
+                                            class="fa-solid fa-power-off" style="color: #000000;"></i> Đăng
                                         xuất</a>
                                 </li>
                             </ul>
                         </div>
                         {{else}}
-                        <button class="btn btn-account">
+                        <button class="btn btn-account me-3">
                             <a href="/account" class="text-decoration-none text-white">
                                 Tài khoản
                             </a>

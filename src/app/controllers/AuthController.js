@@ -51,7 +51,6 @@ const createToken = (id) => {
 }
 
 class AuthController {
-
     // GET /general
     show(req, res, next) {
         res.render('auth/general');
@@ -79,7 +78,7 @@ class AuthController {
             res.status(201).json({
                 user: user._id
             });
-                        
+
         } catch (err) {
             const errors = handleErrors(err);
             res.status(400).json({
