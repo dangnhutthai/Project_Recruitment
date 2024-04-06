@@ -1,5 +1,7 @@
 const job = require('../models/Job');
 const work = require('../models/Work');
+const career = require('../models/Career');
+const location = require('../models/Location');
 
 
 const {
@@ -8,17 +10,57 @@ const {
 const {
     multipleMongooseToObject
 } = require('../../util/mongoose');
-const User = require('../models/User');
 
 class JobController {
-    
+
     // GET /job/:slug
     show(req, res, next) {
-        Promise.all([job.findOne({ slug: req.params.slug }), work.find({slug: req.params.slug})])
-            .then(([job, works]) => 
-                res.render('jobs/show', { 
+        Promise.all([job.findOne({
+                slug: req.params.slug
+            }), work.findOne({
+                slug: req.params.slug
+            })])
+            .then(([job, work]) =>
+                res.render('jobs/show', {
                     job: mongooseToObject(job),
-                    works: multipleMongooseToObject(works),
+                    work: mongooseToObject(work),
+                })
+            )
+            .catch(next)
+    }
+
+    search(req, res, next) {
+        const {
+            title
+        } = req.query
+        Promise.all([job.find({
+                "$or": [{
+                        title: {
+                            $regex: `${title}`
+                        }
+                    },
+                    {
+                        career: {
+                            $regex: `${title}`
+                        }
+                    },
+                    {
+                        location: {
+                            $regex: `${title}`
+                        }
+                    }, {
+                        type: {
+                            $regex: `${title}`
+                        }
+                    }
+                ]
+            }), location.find({}), career.find({})])
+            .then(([jobs, locations, careers]) =>
+                res.render('jobs/search', {
+                    jobs: multipleMongooseToObject(jobs),
+                    locations: multipleMongooseToObject(locations),
+                    careers: multipleMongooseToObject(careers),
+                    title
                 })
             )
             .catch(next)
@@ -26,7 +68,9 @@ class JobController {
 
     // POST /job/store
     store(req, res, next) {
-        const formData = {...req.body};
+        const formData = {
+            ...req.body
+        };
         const Job = new job(formData);
         Job.save();
         res.redirect('/');

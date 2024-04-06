@@ -58,9 +58,15 @@
 
                         </div>
                         <div class="row mt-2 justify-content-center text-center">
+                            {{if (isEqual company.image 'new')}}
+                             <div class="mb-2">
+                                <img class="w-25" src="/img/noavatar.jpg" alt="">
+                            </div>
+                            {{else}}
                             <div class="mb-2">
                                 <img class="w-25" src="/img/uploads/{{ company.image }}" alt="">
                             </div>
+                            {{/if}}
                             <div class="input-group mb-3 w-50 ">
                                 <input type="file" name="image" class="form-control">
                                  <input type="text" name="imageurl" class="form-control" value="{{ company.image }}"

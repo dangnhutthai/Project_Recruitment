@@ -22,6 +22,9 @@ const Job = new schema({
     career: {
         type: String
     },
+    img: {
+        type: String
+    },
     company: {
         type: String
     },
@@ -61,7 +64,7 @@ const Job = new schema({
     idcom: {
         type: String
     },
-    
+
     company: {
         type: String,
     },

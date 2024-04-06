@@ -63,6 +63,7 @@ app.engine(
       isGender: (a) => a === 'Nữ',
       isApply: (a) => a === false,
       isEqual: (a, b) => a == b,
+      isExpired: (a) => a < Date.now(),
     }
   }),
 );

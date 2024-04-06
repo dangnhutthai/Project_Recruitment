@@ -33,17 +33,45 @@
                                     </td>
                                     <td>
                                         {{#if (isApply this.isAccept)}}
-                                        <form method="POST" action="/work/eject/{{this._id}}?_method=PATCH">
-                                            <input type="text" name="isAccept" class="form-control" value="true" hidden>
-                                            <input type="text" name="userid" class="form-control"
-                                                value="{{this.userId}}" hidden>
-                                            <button type="submit" class="btn btn-warning">Từ chối <i
-                                                    class="fa-solid fa-ban" style="color: #000000;"></i></button>
-                                        </form>
-                                        <button class="btn btn-submit mt-1" data-bs-toggle="modal"
+                                        <button class="btn btn-warning" data-bs-toggle="modal"
+                                            data-bs-target="#ejectModal">Từ chối <i class="fa-solid fa-ban"
+                                                style="color: #000000;"></i></button>
+                                                {{!-- modal --}}
+                                        <div class="modal fade" id="ejectModal" tabindex="-1" aria-labelledby=""
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <h3 class="text-center my-3">Từ chối ứng viên</h3>
+                                                        <div class="text-center">
+                                                            <i class="fa-solid fa-triangle-exclamation fs-1"
+                                                                style="color: #fde58b;"></i>
+                                                        </div>
+                                                        <div class="text-center mt-3">Bạn có chắc chắn từ chối ứng viên
+                                                            này?</div>
+                                                        <form method="POST"
+                                                            action="/work/eject/{{this._id}}?_method=PATCH">
+                                                            <input type="text" name="isAccept" class="form-control"
+                                                                value="true" hidden>
+                                                            <input type="text" name="userid" class="form-control"
+                                                                value="{{this.userId}}" hidden>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Quay lại</button>
+                                                        <button type="submit" data-bs-dismiss="modal"
+                                                            class="btn btn-danger">Xác
+                                                            nhận</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-submit" data-bs-toggle="modal"
                                             data-bs-target="#acceptModal">Chấp nhận <i class="fa-solid fa-check"
                                                 style="color: #ffffff;"></i></button>
-
+                                        {{!-- modal --}}
                                         <div class="modal fade" id="acceptModal" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -100,44 +128,3 @@
         </div>
     </div>
 </div>
-
-
-
-{{!-- eject Modal --}}
-<div class="modal fade" id="ejectModal" tabindex="-1" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h3 class="text-center my-3">Từ chối ứng viên</h3>
-                <div class="text-center">
-                    <i class="fa-solid fa-triangle-exclamation fs-1" style="color: #fde58b;"></i>
-                </div>
-                <div class="text-center mt-3">Bạn có chắc chắn từ chối ứng viên này?</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
-                <button type="button" data-bs-target="#complete-modal" data-bs-toggle="modal" data-bs-dismiss="modal"
-                    class="btn btn-danger" id="btn-confirm-eject">Xác nhận</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<script>
-    var deleteJobModal = document.getElementById('ejectModal')
-    var id
-    var deleteJobForm = document.forms['eject-form']
-
-    deleteJobModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget
-        id = button.getAttribute('data-bs-id')
-    })
-
-    var btnDeleteJob = document.getElementById('btn-confirm-eject')
-    btnDeleteJob.onclick = function () {
-        deleteJobForm.action = '/work/eject/' + id + '?_method=PATCH';
-        deleteJobForm.submit();
-    }
-</script>

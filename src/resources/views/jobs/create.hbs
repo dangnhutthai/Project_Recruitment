@@ -15,7 +15,7 @@
                     <form action="/job/store" method="POST">
                         <div class="input-group mb-2">
                             <input type="text" name="title" class="form-control" placeholder="" aria-label=""
-                                aria-describedby="">
+                                aria-describedby="" required>
                             <input type="text" name="idcom" class="form-control" placeholder="" aria-label=""
                                 aria-describedby="" value="{{ user._id }}" hidden>
                             <input type="text" name="company" class="form-control" placeholder="" aria-label=""
@@ -24,6 +24,8 @@
                                 aria-describedby="" value="{{ company.phone }}" hidden>
                             <input type="text" name="email" class="form-control" placeholder="" aria-label=""
                                 aria-describedby="" value="{{ user.email }}" hidden>
+                                <input type="text" name="img" class="form-control" placeholder="" aria-label=""
+                                aria-describedby="" value="{{ company.image }}" hidden>
                         </div>
                         <div class="row">
                             <div class="col-6">

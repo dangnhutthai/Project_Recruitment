@@ -20,10 +20,17 @@
             </div>
 
             <div class="row bg-com mx-1 my-2">
+                {{#if (isEqual company.image 'new')}}
+                <div class="row justify-content-center mb-3">
+
+                    <img src="/img/noavatar.jpg" class="avatar rounded-pill" alt="">
+                </div>
+{{else}}
 
                 <div class="row justify-content-center mb-3">
                     <img src="/img/uploads/{{ company.image }}" class="avatar rounded-pill" alt="">
                 </div>
+                {{/if}}
                 <div class="col-8">
                     <div>
                         <div class="text-title">

@@ -2,7 +2,10 @@
     <div class="row mt-4 justify-content-center info-job">
         <div class="col-7 ">
             <h1 class="mt-2 mb-4">{{job.title}}</h1>
-            <h4 class="mt-2 mb-4 text-muted">{{job.company}}</h4>
+            <div class="d-flex align-items-center">
+                <img class="img-company" src="/img/uploads/{{job.img}}" alt="khong-tai-duoc-hinh-anh">
+                <h4 class="mt-2 mb-4 ms-2 text-muted">{{job.company}}</h4>
+            </div>
             <h4 class="position-relative">Mô tả công việc</h4>
 
 
@@ -94,29 +97,38 @@
         </div>
         <div class="col-3">
             {{#if (isSeeker user.type_user)}}
-            {{#if works}}
-            {{#each works}}
+            {{#if work}}
             {{#if (isEqual user._id work.userId)}}
-            {{#if (isEqual works.jobId job._id)}}
-            <a class="btn btn-secondary btn-disable w-100 my-1 mt-4">
-                Bạn đã ứng tuyển rồi!
+            <a class="btn btn-secondary disable w-100 my-1 mt-4">
+                Bạn đã ứng tuyển rồi {{this.name}}
+            </a>
+            {{else}}
+            <a class="btn btn-secondary w-100 my-1 mt-4">
+                Tạm thời ngừng tuyển dụng
             </a>
             {{/if}}
-            {{/if}}
-            {{/each}}
+            {{else}}
+            {{#if (isExpired job.deadline)}}
+            <a class="btn btn-secondary w-100 my-1 mt-4">
+                Hết hạn nộp hồ sơ
+            </a>
             {{else}}
             <a class="btn btn-submit w-100 my-1 mt-4" data-bs-toggle="modal" data-bs-target="#Confirm-Modal"
                 data-bs-id="{{user._id}}">
                 Ứng tuyển
             </a>
             {{/if}}
+            {{/if}}
             {{else}}
+            {{#if (isEqual user._id job.idcom)}}
             <a href="/company/{{job.slug}}/candidate" class="btn btn-submit w-100 my-1 mt-4">
                 Danh sách ứng viên
             </a>
+            {{else}}
+            {{/if}}
             {{/if}}
 
-            <div class="border border-2 info-job-2">
+            <div class="border border-2 info-job-2 mt-2">
                 <div class="ms-2 mb-2">
 
                     <p class="m-0 fw-bold mt-1">Mức thu nhập:</p>
@@ -206,6 +218,7 @@
 </form>
 
 <script>
+
     let changeIcon = function (icon) {
         icon.classList.toggle('fa-arrow-down');
         icon.classList.toggle('fa-arrow-up');

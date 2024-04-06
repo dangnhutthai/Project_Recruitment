@@ -23,7 +23,9 @@ class WorkController {
                 _id: req.params.id,
                 userId: id,
             }, req.body)
-            .then(() => res.redirect('back'))
+            .then(() => { 
+                res.redirect('back')}
+            ) 
             .catch(next)
     }
 
