@@ -5,10 +5,13 @@ const type = require('../models/Type');
 const career = require('../models/Career');
 const company = require('../models/Company');
 const work = require('../models/Work');
+const seeker = require('../models/Seeker');
+const eduexp = require('../models/EducationExp');
+const workexp = require('../models/WorkExp');
+
 const fs = require('fs');
 const bcrypt = require('bcrypt');
 const user = require('../models/User');
-
 const {
     multipleMongooseToObject
 } = require('../../util/mongoose');
@@ -18,6 +21,7 @@ const {
 const {
     render
 } = require('node-sass');
+
 
 class CompanyController {
 
@@ -76,7 +80,7 @@ class CompanyController {
         job.updateOne({
                 _id: req.params.id
             }, req.body)
-            .then(() => res.redirect('/'))
+            .then(() => res.redirect('back'))
             .catch(next)
     }
 
@@ -278,6 +282,26 @@ class CompanyController {
             )
             .catch(next)
     }
+
+    showdetails(req, res, next) {
+        Promise.all([seeker.findOne({
+            idseeker: req.params.id
+        }), eduexp.find({
+            idseeker: req.params.id
+        }), workexp.find({
+            idseeker: req.params.id
+        })
+    ])
+    .then(([seeker, eduexps, workexps]) =>
+        res.render('company/infoseeker', {
+            seeker: mongooseToObject(seeker),
+            eduexps: multipleMongooseToObject(eduexps),
+            workexps: multipleMongooseToObject(workexps),
+        })
+    )
+    .catch(next)
+    }
+
 }
 
 module.exports = new CompanyController();

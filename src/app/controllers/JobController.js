@@ -18,7 +18,7 @@ class JobController {
         Promise.all([job.findOne({
                 slug: req.params.slug
             }), work.findOne({
-                slug: req.params.slug
+                slug: req.params.slug,
             })])
             .then(([job, work]) =>
                 res.render('jobs/show', {
@@ -36,23 +36,23 @@ class JobController {
         Promise.all([job.find({
                 "$or": [{
                         title: {
-                            $regex: `${title}`
+                            $regex: `${title}`, $options: "i",
                         }
                     },
                     {
                         career: {
-                            $regex: `${title}`
+                            $regex: `${title}`, $options: "i",
                         }
                     },
                     {
                         location: {
-                            $regex: `${title}`
+                            $regex: `${title}`, $options: "i",
                         }
                     }, {
                         type: {
-                            $regex: `${title}`
+                            $regex: `${title}`, $options: "i",
                         }
-                    }
+                    },
                 ]
             }), location.find({}), career.find({})])
             .then(([jobs, locations, careers]) =>

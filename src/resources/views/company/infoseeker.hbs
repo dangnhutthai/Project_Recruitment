@@ -3,7 +3,7 @@
         <div class="col-10">
             <div class="head-body px-3 pt-2 rounded ms-1 text-white text-center fs-3">Thông tin tài khoản
                 <span class="d-flex float-start mt-2">
-                    <a href="../../seeker/editinfo/{{ user._id }}">
+                    <a href="../../seeker/{{ user._id }}/editinfo">
                         <i class="fa-solid fa-pen fs-4 icon-hover" data-bs-toggle="tooltip" data-bs-placement="top"
                             title="Chỉnh sửa thông tin" style="color: #ffffff;"></i>
                         </i>
@@ -85,7 +85,7 @@
         <div class="col-10">
             <div class="head-body px-3 pt-2 rounded ms-1 text-white text-center fs-3">Trình độ học vấn
                 <span class="d-flex float-start mt-2">
-                    <a href="../createeduexp/{{seeker.idseeker}}">
+                    <a href="../createeduexp">
                         <i class="fa-solid fa-plus fs-4 icon-hover" data-bs-toggle="tooltip" data-bs-placement="top"
                             title="Thêm học vấn" style="color: #ffffff;"></i>
                         </i>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="col-2">
                     <div class="d-flex flex-bottom align-items-center ms-1 mb-1 button-details">
-                        <a href="/seeker/editeduexp/{{this._id}}" class="btn btn-warning mx-1">Sửa</a>
+                        <a href="/seeker/{{this._id}}/editeduexp" class="btn btn-warning mx-1">Sửa</a>
                         <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delele-Edu-Modal"
                             data-bs-id="{{this._id}}">Xóa</a>
                     </div>
@@ -139,13 +139,16 @@
                 <hr>
                 {{/each}}
                 {{else}}
+
                 <div class="text-center">
                     <p class="fs-4 my-3">Thông tin học vấn trống</p>
                     <div class="my-3">
+
                         <i class="fa-solid fa-hourglass fs-1" style="color: #595993;"></i>
                     </div>
-                    <a href="/seeker/createeduexp/{{seeker.idseeker}}" class="text-decoration-none fs-5">Bổ sung ngay</a>
+                    <a href="/seeker/createeduexp" class="text-decoration-none fs-5">Bổ sung ngay</a>
                 </div>
+
                 {{/if}}
             </div>
         </div>
@@ -156,7 +159,7 @@
         <div class="col-10">
             <div class="head-body px-3 pt-2 rounded ms-1 text-white text-center fs-3">Kinh nghiệm làm việc
                 <span class="d-flex float-start mt-2">
-                    <a href="../createworkexp/{{seeker.idseeker}}">
+                    <a href="../createworkexp">
                         <i class="fa-solid fa-plus fs-4 icon-hover" data-bs-toggle="tooltip" data-bs-placement="top"
                             title="Thêm kinh nghiệm" style="color: #ffffff;"></i>
                         </i>
@@ -218,7 +221,7 @@
                 </div>
                 <div class="col-2">
                     <div class="d-flex flex-bottom align-items-center ms-1 mb-1 button-details">
-                        <a href="/seeker/editworkexp/{{this._id}}" class="btn btn-warning mx-1">Sửa</a>
+                        <a href="/seeker/{{this._id}}/editworkexp" class="btn btn-warning mx-1">Sửa</a>
                         <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Delele-Exp-Modal"
                             data-bs-id="{{this._id}}">Xóa</a>
                     </div>
@@ -234,7 +237,6 @@
 
                         <i class="fa-solid fa-hourglass fs-1" style="color: #595993;"></i>
                     </div>
-                    <a href="/seeker/createworkexp/{{seeker.idseeker}}" class="text-decoration-none fs-5">Bổ sung ngay</a>
                 </div>
 
             </div>
@@ -243,118 +245,3 @@
     </div>
 </div>
 
-<!-- Modal 1 -->
-<div class="modal fade" id="Delele-Exp-Modal" tabindex="-1" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h3 class="text-center my-3">Xóa mục này</h3>
-                <div class="text-center">
-                    <i class="fa-solid fa-triangle-exclamation fs-1" style="color: #fde58b;"></i>
-                </div>
-                <div class="text-center mt-3">Bạn có chắc chắn xóa?</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
-                <button type="button" data-bs-target="#complete-modal-work" data-bs-toggle="modal"
-                    data-bs-dismiss="modal" class="btn btn-danger">Xóa</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 2-->
-<div class="modal fade" id="complete-modal-work" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
-    tabindex="-1" shown-bs-modal="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="text-center mt-2">
-                    <i class="fa-solid fa-check fs-1" style="color: #34e5b0;"></i>
-                </div>
-                <div class="text-center my-3">
-                    Xóa thành công!
-                </div>
-                <div class="text-center my-1">
-                    <button type="button" id="btn-delete-work" class="btn btn-danger">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 3 -->
-<div class="modal fade" id="Delele-Edu-Modal" tabindex="-1" aria-labelledby="" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h3 class="text-center my-3">Xóa mục này</h3>
-                <div class="text-center">
-                    <i class="fa-solid fa-triangle-exclamation fs-1" style="color: #fde58b;"></i>
-                </div>
-                <div class="text-center mt-3">Bạn có chắc chắn xóa?</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
-                <button type="button" data-bs-target="#complete-modal-edu" data-bs-toggle="modal"
-                    data-bs-dismiss="modal" class="btn btn-danger">Xóa</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 4 -->
-<div class="modal fade" id="complete-modal-edu" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
-    tabindex="-1" shown-bs-modal="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="text-center mt-2">
-                    <i class="fa-solid fa-check fs-1" style="color: #34e5b0;"></i>
-                </div>
-                <div class="text-center my-3">
-                    Xóa thành công!
-                </div>
-                <div class="text-center my-1">
-                    <button type="button" id="btn-delete-edu" class="btn btn-danger">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{{!-- hidden form --}}
-<form method="POST" name="delete-work-form"></form>
-<form method="POST" name="delete-edu-form"></form>
-
-
-<script>
-    var deleteWorkModal = document.getElementById('Delele-Exp-Modal')
-    var idWork
-    var deleteWorkForm = document.forms['delete-work-form']
-
-    deleteWorkModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget
-        idWork = button.getAttribute('data-bs-id')
-    })
-    var btnDeleteWork = document.getElementById('btn-delete-work')
-    btnDeleteWork.onclick = function () {
-        deleteWorkForm.action = '/seeker/workexp/' + idWork + '?_method=DELETE';
-        deleteWorkForm.submit();
-    }
-
-    var deleteEduModal = document.getElementById('Delele-Edu-Modal')
-    var idEdu
-    var deleteEduForm = document.forms['delete-edu-form']
-
-    deleteEduModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget
-        idEdu = button.getAttribute('data-bs-id')
-    })
-    var btnDeleteEdu = document.getElementById('btn-delete-edu')
-    btnDeleteEdu.onclick = function () {
-        deleteEduForm.action = '/seeker/eduexp/' + idEdu + '?_method=DELETE';
-        deleteEduForm.submit();
-    }
-
-</script>

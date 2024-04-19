@@ -5,8 +5,9 @@ const WorkController = require('../app/controllers/WorkController');
 
 
 router.post('/:id/applyJob', WorkController.store);
-router.patch('/eject/:id', WorkController.eject);
-router.patch('/accept/:id', WorkController.accept);
+router.get('/eject/:id', WorkController.eject);
+router.get('/accept/:id', WorkController.accept);
+router.get('/delete/:id', WorkController.delete);
 
 
 module.exports = router;

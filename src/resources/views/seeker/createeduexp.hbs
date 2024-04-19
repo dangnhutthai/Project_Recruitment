@@ -1,13 +1,20 @@
 <div class="container-edit mt-5">
     <div class="row justify-content-center">
         <div class="col-6 mt-3">
+             <span class="d-flex float-start mt-3 ms-3">
+                    <a href="../account/{{user._id}}">
+                        <i class="fa-solid fa-less-than fs-4 icon-hover" data-bs-toggle="tooltip"
+                            data-bs-placement="top" title="Chỉnh sửa thông tin" style="color: #ffffff;"></i>
+                        </i>
+                    </a>
+                </span>
             <div class="head-body px-3 py-2 rounded ms-1 text-white text-center fs-3">
                 Trình độ học vấn
             </div>
             <div class="row mt-1 bg-com pb-3 mx-1 justify-content-center">
                 <div class="col-10 pe-3">
                     <span class="" id="">Bằng cấp</span>
-                    <form name="storeeduexp" method="POST">
+                    <form action="../storeeduexp/{{user._id}}" method="POST">
                         <div class="input-group mb-2">
                             <input type="text" name="certificate" class="form-control" placeholder="" aria-label=""
                                 aria-describedby="" required>
@@ -44,7 +51,7 @@
                         </div>
                             
                             <div class="d-flex justify-content-center mt-2">
-                                <button class="btn-submit rounded-pill text-wrap">
+                                <button type="submit" class="btn-submit rounded-pill text-wrap">
                                     <p class="p-2 my-0 mx-5">
                                         Tạo
                                     </p>
@@ -58,7 +65,7 @@
     </div>
 </div>
 
-<script>
+{{!-- <script>
     const eduexpForm = document.forms['storeeduexp'];
     eduexpForm.addEventListener('submit', (e) => {
         //const valuecheck = eduexpForm.school.value;
@@ -71,4 +78,4 @@
             eduexpForm.submit();
         //}
     })
-</script>
+</script> --}}

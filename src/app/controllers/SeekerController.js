@@ -56,12 +56,13 @@ class SeekerController {
     }
 
     storeeduexp(req, res, next) {
+        const id = req.params.id;
         const formData = {
             ...req.body
         };
         const Eduexp = new eduexp(formData);
         Eduexp.save();
-        res.redirect('/');
+        res.redirect('../account/'+id);
     }
 
     createworkexp(req, res, next) {
@@ -69,12 +70,13 @@ class SeekerController {
     }
 
     storeworkexp(req, res, next) {
+        const id = req.params.id;
         const formData = {
             ...req.body
         };
         const Workexp = new workexp(formData);
         Workexp.save();
-        res.redirect('/');
+        res.redirect('../account/'+id);
     }
 
     showaccount(req, res, next) {

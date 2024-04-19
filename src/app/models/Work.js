@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
 const schema = mongoose.Schema;
+const mongooseDelete = require('mongoose-delete');
+const methodOverride = require('method-override');
 
-const Work = {
+const Work = new schema ({
     userId: {
         type: String
     },
@@ -39,6 +41,11 @@ const Work = {
     slug: {
         type: String
     }
-}
+})
+
+Work.plugin(mongooseDelete, {
+    deletedAt: true,
+    overrideMethods: 'all'
+});
 
 module.exports = mongoose.model('Work', Work)

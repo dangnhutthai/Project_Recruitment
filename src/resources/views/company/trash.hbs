@@ -137,7 +137,7 @@
     })
 
     btnDeleteJob.onclick = function () {
-        deleteJobForm.action = '/company/' + idJob + '/force?_method=DELETE';
+        deleteJobForm.action = '/company/force/' + idJob + '?_method=DELETE';
         deleteJobForm.submit();
     }
 
@@ -149,7 +149,7 @@
     // restore btn click
     btnRestoreJob.click(function (e) {
         e.preventDefault();
-        restoreJobForm.action = '/company/' + idJobRestore + '/restore?_method=PATCH';
+        restoreJobForm.action = '/company/restore/' + idJobRestore + '?_method=PATCH';
         restoreJobForm.submit();
     })
 

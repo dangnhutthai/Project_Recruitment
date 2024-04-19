@@ -18,11 +18,10 @@ class WorkController {
     }
 
     eject(req, res, next) {
-        const id = req.body.userid;
+        const id = req.params.id;
         work.updateOne({
-                _id: req.params.id,
-                userId: id,
-            }, req.body)
+                _id: id,
+            }, {isAccept: true})
             .then(() => { 
                 res.redirect('back')}
             ) 
@@ -30,15 +29,25 @@ class WorkController {
     }
 
     accept(req, res, next) {
-        const id = req.body.userid;
-
+        const id = req.params.id;
         work.updateOne({
-                _id: req.params.id,
-                userId: id,
-            }, req.body)
-            .then(() => res.redirect('back'))
+                _id: id,
+            }, {isAccept: true})
+            .then(() => { 
+                res.redirect('back')}
+            ) 
+            .catch(next)
+    }
+    delete(req, res, next) {
+        work.delete({
+                _id: req.params.id
+            })
+            .then(() => {
+                res.redirect('back')
+            })
             .catch(next)
     }
 }
+
 
 module.exports = new WorkController();

@@ -20,5 +20,16 @@ class SiteController {
             )
             .catch(next)
     }
+
+    introduce(req, res, next) {
+
+        res.render('introduce')
+    }
+
+    contact(req, res, next) {
+
+        res.render('contact')
+
+    }
 }
 module.exports = new SiteController();
