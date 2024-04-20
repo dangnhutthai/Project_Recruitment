@@ -121,7 +121,7 @@
             {{/if}}
             {{else}}
             {{#if (isEqual user._id job.idcom)}}
-            <a href="/company/{{job.slug}}/candidate" class="btn btn-submit w-100 my-1 mt-4">
+            <a href="/company/candidate/{{job.slug}}" class="btn btn-submit w-100 my-1 mt-4">
                 Danh sách ứng viên
             </a>
             {{else}}
@@ -235,7 +235,7 @@
 
     var btnDeleteJob = document.getElementById('btn-complete-apply')
     btnDeleteJob.onclick = function () {
-        applyForm.action = '/work/' + id + '/applyJob?_method=POST';
+        applyForm.action = '/work/applyJob/' + id + '?_method=POST';
         applyForm.submit();
     }
 </script>

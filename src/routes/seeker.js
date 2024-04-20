@@ -17,8 +17,9 @@ router.delete('/workexp/:id', seekerController.deleteWork);
 router.delete('/eduexp/:id', seekerController.deleteEdu);
 router.get('/editWorkExp/:id', seekerController.showeditwork);
 router.get('/editinfo/:id', seekerController.showeditinfo);
-router.put('/:id/updateinfo', fileUpload("./src/public/img/uploads"), seekerController.updateinfo);
+router.put('/updateinfo/:id', fileUpload("./src/public/img/uploads"), seekerController.updateinfo);
 router.get('/editeduexp/:id', seekerController.showeditedu);
-router.put('/:id/editeduexp', seekerController.updateeduexp);
-router.put('/:id/editworkexp', seekerController.updateworkexp);
+router.put('/editeduexp/:id', seekerController.updateeduexp);
+router.put('/editworkexp/:id', seekerController.updateworkexp);
+
 module.exports = router;

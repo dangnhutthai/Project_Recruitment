@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="col-6">
                             <span class="" id="">Họ và tên</span>
-                            <form action="/seeker/{{ seeker._id }}/updateinfo?_method=PUT" method="POST" enctype="multipart/form-data">
+                            <form action="/seeker/updateinfo/{{ seeker._id }}?_method=PUT" method="POST" enctype="multipart/form-data">
                                 <div class="input-group mb-2">
                                     <input type="text" name="name" class="form-control" placeholder="" aria-label=""
                                         aria-describedby="" value="{{ seeker.name }}" required>

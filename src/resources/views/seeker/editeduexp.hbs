@@ -7,7 +7,7 @@
             <div class="row mt-1 bg-com pb-3 mx-1 justify-content-center">
                 <div class="col-10 pe-3">
                     <span class="" id="">Bằng cấp</span>
-                    <form action="/seeker/{{ eduexp._id }}/editeduexp?_method=PUT" method="POST">
+                    <form action="/seeker/editeduexp/{{ eduexp._id }}?_method=PUT" method="POST">
                         <div class="input-group mb-2">
                             <input type="text" name="certificate" class="form-control" placeholder="" aria-label=""
                                 aria-describedby="" value="{{ eduexp.certificate }}" required>

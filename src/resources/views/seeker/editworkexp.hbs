@@ -8,7 +8,7 @@
             <div class="row mt-1 bg-com pb-3 mx-1 justify-content-center">
                 <div class="col-10 pe-3">
                     <span class="" id="">Tên công ty</span>
-                    <form action="/seeker/{{ workexp._id }}/editworkexp?_method=PUT" method='POST'>
+                    <form action="/seeker/editworkexp/{{ workexp._id }}?_method=PUT" method='POST'>
                         <div class="input-group mb-2">
                             <input type="text" name="companyname" class="form-control" placeholder="" aria-label=""
                                 aria-describedby="" value="{{ workexp.companyname }}">
