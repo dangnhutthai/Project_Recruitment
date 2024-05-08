@@ -19,11 +19,15 @@ class JobController {
                 slug: req.params.slug
             }), work.findOne({
                 slug: req.params.slug,
-            })])
-            .then(([job, work]) =>
+            }), job.find({
+                
+            }).sort({salary: -1}).limit(5),
+        ])
+            .then(([job, work, jobs]) =>
                 res.render('jobs/show', {
                     job: mongooseToObject(job),
                     work: mongooseToObject(work),
+                    jobs: multipleMongooseToObject(jobs),
                 })
             )
             .catch(next)
@@ -50,6 +54,10 @@ class JobController {
                         }
                     }, {
                         type: {
+                            $regex: `${title}`, $options: "i",
+                        }
+                    }, {
+                        company: {
                             $regex: `${title}`, $options: "i",
                         }
                     },

@@ -13,6 +13,7 @@ router.get('/editJob/:id', companyController.editJob);
 router.get('/editCompany/:id', companyController.editCompany);
 router.get('/candidate/:slug', companyController.showlist);
 router.get('/view-details/:id', companyController.showdetails);
+router.get('/info/:id', companyController.showinfo);
 router.put('/updateCompany/:id', fileUpload("./src/public/img/uploads"), companyController.updateCompany);
 router.put('/:id', companyController.updateJob);
 router.get('/create', companyController.createCom);

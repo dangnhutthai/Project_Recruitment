@@ -3,12 +3,17 @@
         <div class="col-7 ">
             <h1 class="mt-2 mb-4">{{job.title}}</h1>
             <div class="d-flex align-items-center">
-                <img class="img-company rounded-pill" src="/img/uploads/{{job.img}}" alt="khong-tai-duoc-hinh-anh">
-                <h4 class="mt-2 mb-4 ms-2 text-muted">{{job.company}}</h4>
+                <a href="/company/info/{{job.idcom}}">
+                    {{#if (isEqual job.img 'new')}}
+                    <img class="img-company rounded-pill" src="/img/noavatar.jpg" alt="khong-tai-duoc-hinh-anh">
+                    {{else}}
+                    <img class="img-company rounded-pill" src="/img/uploads/{{job.img}}" alt="khong-tai-duoc-hinh-anh">
+                    {{/if}}
+                </a>
+                <h4><a class="mt-2 mb-4 ms-2 text-muted fs-4 text-decoration-none"
+                        href="/company/info/{{job.idcom}}">{{job.company}}</a></h4>
             </div>
             <h4 class="position-relative">Mô tả công việc</h4>
-
-
             <span class="position-absolute btn-drop">
                 <button class="btn p-0 px-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                     aria-expanded="true" aria-controls="collapseExample">
@@ -124,7 +129,6 @@
             <a href="/company/candidate/{{job.slug}}" class="btn btn-submit w-100 my-1 mt-4">
                 Danh sách ứng viên
             </a>
-            {{else}}
             {{/if}}
             {{/if}}
 
@@ -164,6 +168,32 @@
             </div>
 
         </div>
+    </div>
+    <div class="head-body mt-5 py-2 rounded ms-1 text-white text-center fs-3">
+        Việc làm với thu nhập cao
+    </div>
+    <div class="row mt-1 justify-content-evenly info-job">
+        {{#each jobs}}
+        <div class="col-2 p-0 py-2 m-0 text-dark">
+            <div class="card-2 border rounded px-1" style="width: 13rem; height: 150px">
+                <div class="card-body-2">
+                    <p class="card-title">{{this.title}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <p class="card-text text-muted">{{this.company}}</p>
+                        <div>
+
+                            <a href="/job/{{this.slug}}" class="btn btn-submit">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+        {{/each}}
     </div>
 </div>
 
@@ -218,21 +248,17 @@
 </form>
 
 <script>
-
     let changeIcon = function (icon) {
         icon.classList.toggle('fa-arrow-down');
         icon.classList.toggle('fa-arrow-up');
     }
-
     var confirmModal = document.getElementById('Confirm-Modal')
     var id
     var applyForm = document.forms['apply-form']
-
     confirmModal.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget
         id = button.getAttribute('data-bs-id')
     })
-
     var btnDeleteJob = document.getElementById('btn-complete-apply')
     btnDeleteJob.onclick = function () {
         applyForm.action = '/work/applyJob/' + id + '?_method=POST';

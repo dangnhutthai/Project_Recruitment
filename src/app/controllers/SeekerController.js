@@ -25,8 +25,15 @@ class SeekerController {
     }
 
     showmyjob(req, res, next) {
-        work.find({
-                userId: req.params.id
+        work.findWithDeleted({
+                "$or": [{
+                        userId: req.params.id,
+                        deleted: true,
+                    }, {
+                        userId: req.params.id,
+                        deleted: false,
+                    },
+                ]
             })
             .then(works =>
                 res.render('seeker/myjob', {
@@ -34,7 +41,7 @@ class SeekerController {
                 })
             )
             .catch(next)
-        
+
     }
 
     question(req, res, next) {
@@ -62,7 +69,7 @@ class SeekerController {
         };
         const Eduexp = new eduexp(formData);
         Eduexp.save();
-        res.redirect('../account/'+id);
+        res.redirect('../account/' + id);
     }
 
     createworkexp(req, res, next) {
@@ -76,7 +83,7 @@ class SeekerController {
         };
         const Workexp = new workexp(formData);
         Workexp.save();
-        res.redirect('../account/'+id);
+        res.redirect('../account/' + id);
     }
 
     showaccount(req, res, next) {

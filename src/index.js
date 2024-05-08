@@ -60,10 +60,14 @@ app.engine(
         return [date.getFullYear(), mnth, day].join("-");
 
       },
+      isZero: (a) => a == 0,
+      isEmpty: (a) => a == '',
       isGender: (a) => a === 'Nữ',
       isApply: (a) => a === false,
       isEqual: (a, b) => a == b,
       isExpired: (a) => a < Date.now(),
+      plusOne: (a) => a + 1,
+      miniusOne: (a) => a - 1,
     }
   }),
 );

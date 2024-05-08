@@ -187,6 +187,18 @@ class CompanyController {
             .catch(next)
     }
 
+    showinfo(req, res, next) {
+        company.findOne({
+                idcom: req.params.id
+            })
+            .then(company =>
+                res.render('company/showinfo', {
+                    company: mongooseToObject(company)
+                })
+            )
+            .catch(next)
+    }
+
     editCompany(req, res, next) {
         company.findOne({
                 _id: req.params.id

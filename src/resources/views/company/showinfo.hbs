@@ -1,0 +1,76 @@
+<div class="div mt-4">
+    <div class="row justify-content-evenly">
+        <div class="col-10">
+            <div class="head-body px-3 py-2 rounded ms-1 text-white text-center fs-3">{{company.name}}
+                <span class="d-flex float-start mt-2">
+                </span>
+            </div>
+            <div class="row bg-com mx-1 my-2">
+                {{#if (isEqual company.image 'new')}}
+                <div class="row justify-content-center mb-3">
+                    <img src="/img/noavatar.jpg" class="avatar rounded-pill" alt="">
+                </div>
+                {{else}}
+                <div class="row justify-content-center mb-3">
+                    <img src="/img/uploads/{{ company.image }}" class="avatar rounded-pill" alt="">
+                </div>
+                {{/if}}
+                <div class="col-8">
+                    <div>
+                        <div class="text-title">
+                            Tên công ty:
+                        </div>
+                        {{ company.name }}
+                    </div>
+                    <div>
+                        <div class="text-title mt-2">
+                            Địa chỉ:
+                        </div>
+                        {{ company.address }}
+
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div>
+                        <div class="text-title">
+                            Email:
+                        </div>
+                        {{ user.email }}
+                    </div>
+                    <div>
+                        <div class="text-title mt-2">
+                            Số điện thoại:
+                        </div>
+                        {{ company.phone }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <div class="text-title mt-2">
+                            Giới thiệu:
+                        </div>
+                        {{{ company.introduce }}}
+                    </div>
+                    <div class="col-8">
+                        <div class="text-title mt-2">
+                            Ngày thành lập:
+                        </div>
+                        {{convert company.founding }}
+
+                    </div>
+                    <div class="col-4 ps-4">
+
+                        <div class="text-title mt-2">
+                            Website:
+                        </div>
+                        {{ company.weburl }}
+                    </div>
+                </div>
+                <div class="text-center">
+                </div>
+            </div>
+        </div>
+        <div>
+        </div>
+    </div>
+</div>
